@@ -7,13 +7,13 @@ import Model.ObjetoTabuleiro;
  *
  * @author Ivens
  */
-public class AndarUmaCasaParaBaixo implements Command{  
+public class PularLagoParaCima implements Command{
 
     @Override
     public void execute(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoJogo animal, ObjetoTabuleiro padrao) {
         objetosTabuleiro[animal.getColuna()][animal.getLinha()] = padrao;
-        objetosTabuleiro[animal.getColuna()][animal.getLinha() + 1] = (ObjetoTabuleiro)animal;
-        animal.setLinha(animal.getLinha() + 1);
+        objetosTabuleiro[animal.getColuna()][animal.getLinha() - 4] = (ObjetoTabuleiro)animal;
+        animal.setLinha(animal.getLinha() - 4);
     }
     
 }

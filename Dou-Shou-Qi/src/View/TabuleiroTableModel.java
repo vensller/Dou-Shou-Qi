@@ -65,15 +65,24 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
         return imagens.get(caminho);
     }
     
-    public void movimentaPecas(int coluna, int linha){
-        if (tabuleiroController.movimentaPeca(coluna, linha)){
-            fireTableDataChanged();
-        }
+    public void movimentaPecas(int coluna, int linha){        
+        tabuleiroController.movimentaPeca(coluna, linha);
     }
 
     @Override
     public void receberMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
+    }
+
+    @Override
+    public void notificarAlteracaoTabuleiro() {
+        fireTableDataChanged();
+    }
+
+    @Override
+    public void notificarFimJogo(int jogadorVencedor) {
+        JOptionPane.showMessageDialog(null, "Fim do jogo! Parabéns jogador " + jogadorVencedor + "!");
+        System.exit(0);
     }
     
 }

@@ -22,8 +22,7 @@ public class Tabuleiro extends javax.swing.JFrame{
         tableModel = new TabuleiroTableModel();        
         jTabuleiro.setModel(tableModel);    
         setResizable(false);
-        jTabuleiro.addMouseListener(new TabuleiroMouseListener());
-        JOptionPane.showMessageDialog(this, "Jogador 1 (Vermelho) começa!");
+        jTabuleiro.addMouseListener(new TabuleiroMouseListener());           
     }
     
     public synchronized static Tabuleiro getInstance(){

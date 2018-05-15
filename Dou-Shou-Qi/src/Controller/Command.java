@@ -9,5 +9,5 @@ import Model.ObjetoTabuleiro;
  */
 public interface Command {
    
-    void execute(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoJogo animal);
+    void execute(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoJogo animal, ObjetoTabuleiro padrao);
 }
