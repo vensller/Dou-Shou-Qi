@@ -6,6 +6,5 @@ package Model;
  */
 public interface Animal extends Peca{
     
-    int getForca();    
-    
+    int getForca(); 
 }

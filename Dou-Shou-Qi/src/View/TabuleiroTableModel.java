@@ -15,12 +15,10 @@ import javax.swing.table.AbstractTableModel;
 public class TabuleiroTableModel extends AbstractTableModel implements ObservadorTabuleiro{
 
     private TabuleiroController tabuleiroController;
-    private HashMap<String, ImageIcon> imagens;    
-    private HashMap<String, JLabel> labels;
+    private HashMap<String, ImageIcon> imagens;        
     
     public TabuleiroTableModel(){        
-        imagens             = new HashMap<String, ImageIcon>();
-        labels              = new HashMap<String, JLabel>();
+        imagens             = new HashMap<String, ImageIcon>();        
         tabuleiroController = new TabuleiroController();
         tabuleiroController.observarTabuleiro(this);    
         tabuleiroController.adicionaTodasPecasNoTabuleiro();        
@@ -47,10 +45,7 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
             for (int y = 0; y < 9; y++){
                 String caminho = tabuleiroController.retornaCaminhoImagemPelaPosicao(x, y);
                 if (imagens.get(caminho) == null){                    
-                    imagens.put(caminho, new ImageIcon(caminho));                                        
-                    JLabel label = new JLabel();
-                    label.setIcon(imagens.get(caminho));
-                    labels.put(caminho, label);
+                    imagens.put(caminho, new ImageIcon(caminho));                                 
                     setValueAt(imagens.get(caminho).getImage(), x, y);
                 }
             }
@@ -83,6 +78,13 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
     public void notificarFimJogo(int jogadorVencedor) {
         JOptionPane.showMessageDialog(null, "Fim do jogo! Parabéns jogador " + jogadorVencedor + "!");
         System.exit(0);
+    }
+
+    @Override
+    public void notificaTrocouImagem(String imagem) {
+        if (imagens.get(imagem) == null){
+            imagens.put(imagem, new ImageIcon(imagem));
+        }
     }
     
 }

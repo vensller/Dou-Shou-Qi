@@ -7,17 +7,13 @@ package Model;
 public class FabricaDeArmadilha extends FabricaDePeca{
 
     @Override
-    public void criaPecaJogador1(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[2][0] = new Armadilha("Imagens/armadilha.png", 1, 0, 2);
-        objetosTabuleiro[4][0] = new Armadilha("Imagens/armadilha.png", 1, 0, 4);
-        objetosTabuleiro[3][1] = new Armadilha("Imagens/armadilha.png", 1, 1, 3);        
+    public Peca criaPecaJogador1(int linha, int coluna) {
+        return new Armadilha("Imagens/armadilha.png", 1, linha, coluna);
     }
 
     @Override
-    public void criaPecaJogador2(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[2][8] = new Armadilha("Imagens/armadilha.png", 2, 8, 2);
-        objetosTabuleiro[4][8] = new Armadilha("Imagens/armadilha.png", 2, 8, 4);
-        objetosTabuleiro[3][7] = new Armadilha("Imagens/armadilha.png", 2, 7, 3);    
+    public Peca criaPecaJogador2(int linha, int coluna) {
+        return new Armadilha("Imagens/armadilha.png", 2, linha, coluna);
     }
-    
+   
 }

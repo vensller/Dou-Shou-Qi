@@ -10,5 +10,6 @@ public interface ObservadorTabuleiro {
     void receberMensagem(String mensagem);
     void notificarAlteracaoTabuleiro();
     void notificarFimJogo(int jogadorVencedor);
+    void notificaTrocouImagem(String imagem);
     
 }

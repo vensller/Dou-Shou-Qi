@@ -15,7 +15,7 @@ public class Cachorro extends ObjetoJogo implements Animal{
 
     @Override
     public int getForca() {
-        return 4;
+        return 3;
     }
 
     @Override

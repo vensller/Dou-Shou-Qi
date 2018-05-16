@@ -7,13 +7,13 @@ package Model;
 public class FabricaDeLobo extends FabricaDePeca{
 
     @Override
-    public void criaPecaJogador1(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[4][2] = new Lobo("Imagens/lobo1.png", 1, 2, 4);        
+    public Peca criaPecaJogador1(int linha, int coluna) {
+        return new Lobo("Imagens/lobo1.png", 1, linha, coluna);
     }
 
     @Override
-    public void criaPecaJogador2(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[2][6] = new Lobo("Imagens/lobo2.png", 2, 6, 2);
+    public Peca criaPecaJogador2(int linha, int coluna) {
+        return new Lobo("Imagens/lobo2.png", 2, linha, coluna);
     }
     
 }

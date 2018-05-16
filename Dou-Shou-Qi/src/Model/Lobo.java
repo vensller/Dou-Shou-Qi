@@ -15,7 +15,7 @@ public class Lobo extends ObjetoJogo implements Animal{
 
     @Override
     public int getForca() {
-        return 3;
+        return 4;
     }
 
     @Override

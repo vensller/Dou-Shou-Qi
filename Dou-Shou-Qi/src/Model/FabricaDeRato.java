@@ -7,13 +7,13 @@ package Model;
 public class FabricaDeRato extends FabricaDePeca{
 
     @Override
-    public void criaPecaJogador1(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[0][2] = new Rato("Imagens/rato1.png", 1, 2, 0);        
+    public Peca criaPecaJogador1(int linha, int coluna) {
+        return new Rato("Imagens/rato1.png", 1, linha, coluna);
     }
 
     @Override
-    public void criaPecaJogador2(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[6][6] = new Rato("Imagens/rato2.png", 2, 6, 6);        
+    public Peca criaPecaJogador2(int linha, int coluna) {
+        return new Rato("Imagens/rato2.png", 2, linha, coluna);
     }
     
 }

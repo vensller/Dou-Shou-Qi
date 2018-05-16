@@ -6,7 +6,7 @@ package Model;
  */
 public abstract class FabricaDePeca{
     
-    public abstract void criaPecaJogador1(ObjetoTabuleiro[][] objetosTabuleiro);
-    public abstract void criaPecaJogador2(ObjetoTabuleiro[][] objetosTabuleiro);
+    public abstract Peca criaPecaJogador1(int linha, int coluna);
+    public abstract Peca criaPecaJogador2(int linha, int coluna);
     
 }

@@ -5,15 +5,15 @@ package Model;
  * @author Ivens
  */
 public class FabricaDeToca extends FabricaDePeca{
-
+    
     @Override
-    public void criaPecaJogador1(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[3][0] = new Toca("Imagens/toca.png", 1, 0, 3);    
+    public Peca criaPecaJogador1(int linha, int coluna) {
+        return new Toca("Imagens/toca.png", 1, linha, coluna);
     }
 
     @Override
-    public void criaPecaJogador2(ObjetoTabuleiro[][] objetosTabuleiro) {
-        objetosTabuleiro[3][8] = new Toca("Imagens/toca.png", 2, 8, 3);        
+    public Peca criaPecaJogador2(int linha, int coluna) {
+        return new Toca("Imagens/toca.png", 2, linha, coluna);
     }
     
 }

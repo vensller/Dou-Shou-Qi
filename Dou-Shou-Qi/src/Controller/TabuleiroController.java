@@ -2,6 +2,10 @@ package Controller;
 
 import Model.Animal;
 import Model.Armadilha;
+import Model.BuilderJogador;
+import Model.ConcretBuilderJogador1;
+import Model.ConcretBuilderJogador2;
+import Model.DiretorJogador;
 import Model.FabricaDeArmadilha;
 import Model.FabricaDeCachorro;
 import Model.FabricaDeElefante;
@@ -24,6 +28,7 @@ import Model.Rato;
 import Model.Tigre;
 import Model.Toca;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,7 +51,10 @@ public class TabuleiroController {
     private PularLagoParaBaixo pularLagoParaBaixo;
     private PularLagoParaCima pularLagoParaCima;
     private PularLagoParaEsquerda pularLagoParaEsquerda;
-    private PularLagoParaDireita pularLagoParaDireita;
+    private PularLagoParaDireita pularLagoParaDireita;    
+    private ConcretBuilderJogador1 builderJogador1;
+    private ConcretBuilderJogador2 builderJogador2;
+    private HashMap<String, FabricaDePeca> fabricas;
     
     public TabuleiroController(){
         objetosTabuleiro      = new ObjetoTabuleiro[7][9];
@@ -62,19 +70,15 @@ public class TabuleiroController {
         pularLagoParaBaixo    = new PularLagoParaBaixo();
         pularLagoParaEsquerda = new PularLagoParaEsquerda();
         pularLagoParaDireita  = new PularLagoParaDireita();
+        builderJogador1       = new ConcretBuilderJogador1();
+        builderJogador2       = new ConcretBuilderJogador2();
+        fabricas              = new HashMap<String, FabricaDePeca>();
+        criaFabricas();
     }
     
-    public void adicionaTodasPecasNoTabuleiro(){ 
-        criaPecasDosJogadores(new FabricaDeToca());
-        criaPecasDosJogadores(new FabricaDeArmadilha());
-        criaPecasDosJogadores(new FabricaDeCachorro());
-        criaPecasDosJogadores(new FabricaDeElefante());
-        criaPecasDosJogadores(new FabricaDeGato());
-        criaPecasDosJogadores(new FabricaDeLeao());
-        criaPecasDosJogadores(new FabricaDeLeopardo());
-        criaPecasDosJogadores(new FabricaDeLobo());
-        criaPecasDosJogadores(new FabricaDeRato());
-        criaPecasDosJogadores(new FabricaDeTigre());
+    public void adicionaTodasPecasNoTabuleiro(){    
+        criaPecasJogadores(builderJogador1);
+        criaPecasJogadores(builderJogador2);
         criaObjetosTabuleiro(new FabricaDeLago());        
         notificarCarregamentoTabuleiro();
     }
@@ -92,6 +96,7 @@ public class TabuleiroController {
     public void movimentaPeca(int coluna, int linha){
         boolean movimentou = false;
         boolean fimJogo = false;
+        boolean trocouImagem = false;
         
         if (animalAtual == null){
             if (objetosTabuleiro[coluna][linha] != null){
@@ -105,8 +110,18 @@ public class TabuleiroController {
             if (objetosTabuleiro[coluna][linha] != null){
                 if ((objetosTabuleiro[coluna][linha] instanceof Lago)&&(animalAtual instanceof Rato)){
                     movimentou = movimentaPecaParaPosicao(coluna, linha);
-                }else if (objetosTabuleiro[coluna][linha] instanceof Armadilha){
-                    movimentou = movimentaPecaParaPosicao(coluna, linha);                    
+                    if (movimentou){
+                        ((Rato)animalAtual).setEstaNoLago(true);
+                        animalAtual.setImagem("Imagens/rato" + jogadorAtual + "NoLago.png");
+                        trocouImagem = true;
+                    }
+                }else if ((objetosTabuleiro[coluna][linha] instanceof Armadilha) && (((Armadilha)objetosTabuleiro[coluna][linha]).getJogador() != jogadorAtual)){
+                    movimentou = movimentaPecaParaPosicao(coluna, linha);   
+                    if (movimentou){
+                        animalAtual.setEstaNaArmadilha(true);
+                        animalAtual.setImagem(animalAtual.getImagemOriginal() + "NaArmadilha.png");
+                        trocouImagem = true;
+                    }
                 }else if ((objetosTabuleiro[coluna][linha] instanceof Toca)&&(((Toca)objetosTabuleiro[coluna][linha]).getJogador() != jogadorAtual)){
                     movimentou = movimentaPecaParaPosicao(coluna, linha);
                     fimJogo = movimentou;
@@ -117,11 +132,28 @@ public class TabuleiroController {
         }    
         
         if (movimentou){
+            if (!trocouImagem){
+                if (animalAtual.isEstaNaArmadilha()){
+                    animalAtual.setEstaNaArmadilha(false);
+                    animalAtual.setImagem(animalAtual.getImagemOriginal() + ".png");
+                }else if ((animalAtual instanceof Rato) && ((Rato)animalAtual).isEstaNoLago()){
+                    ((Rato)animalAtual).setEstaNoLago(false);
+                    animalAtual.setImagem(animalAtual.getImagemOriginal() + ".png");
+                }
+            }else notificaImagemAlterada(((ObjetoTabuleiro)animalAtual).getImagem());
+            
+            inverteJogador();
+            animalAtual = null;        
             notificaMovimentacaoPeca();
             if (fimJogo){
                 notificaFimJogo();
             }
         }       
+    }
+    
+    private void criaPecasJogadores(BuilderJogador builder){
+        DiretorJogador diretor = new DiretorJogador(builder, fabricas);
+        diretor.construir(objetosTabuleiro, objetosPadroes);
     }
     
     private void notificaMovimentacaoPeca(){
@@ -231,11 +263,6 @@ public class TabuleiroController {
         if (!movimentou){
             movimentou = movimentaPecaPulandoLago(coluna, linha);
         }
-
-        if (movimentou) {
-            inverteJogador();
-            animalAtual = null;
-        }
         
         return movimentou;
     }
@@ -253,21 +280,35 @@ public class TabuleiroController {
         for (ObservadorTabuleiro obs : observadores){
             obs.notificarCarregamentoTabuleiro();
         }
-    }
-    
-    private void criaPecasDosJogadores(FabricaDePeca fabrica){
-        fabrica.criaPecaJogador1(objetosTabuleiro);
-        fabrica.criaPecaJogador2(objetosTabuleiro);
-    }
+    }    
     
     private void criaObjetosTabuleiro(FabricaDeObjetoTabuleiro fabrica){
         fabrica.criaObjetoTabuleiro(objetosTabuleiro);
         fabrica.criaObjetoTabuleiro(objetosPadroes);
-    }
+    }    
     
     private void enviarMensagemObservadores(String mensagem){
         for (ObservadorTabuleiro obs : observadores){
             obs.receberMensagem(mensagem);
+        }
+    }
+    
+    private void criaFabricas(){
+        fabricas.put("Armadilha", new FabricaDeArmadilha());
+        fabricas.put("Cachorro", new FabricaDeCachorro());
+        fabricas.put("Elefante", new FabricaDeElefante());
+        fabricas.put("Gato", new FabricaDeGato());
+        fabricas.put("Leao", new FabricaDeLeao());
+        fabricas.put("Leopardo", new FabricaDeLeopardo());
+        fabricas.put("Lobo", new FabricaDeLobo());
+        fabricas.put("Rato", new FabricaDeRato());
+        fabricas.put("Tigre", new FabricaDeTigre());
+        fabricas.put("Toca", new FabricaDeToca());       
+    }
+    
+    private void notificaImagemAlterada(String imagem){
+        for (ObservadorTabuleiro obs : observadores){
+            obs.notificaTrocouImagem(imagem);
         }
     }
         
