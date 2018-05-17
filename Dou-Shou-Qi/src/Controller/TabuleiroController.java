@@ -3,18 +3,19 @@ package Controller;
 import Model.Animal;
 import Model.Armadilha;
 import Model.BuilderJogador;
+import Model.BuilderObjetoTabuleiro;
 import Model.ConcretBuilderJogador1;
 import Model.ConcretBuilderJogador2;
+import Model.ConcretBuilderTabuleiro;
 import Model.DiretorJogador;
+import Model.DiretorTabuleiro;
 import Model.FabricaDeArmadilha;
 import Model.FabricaDeCachorro;
 import Model.FabricaDeElefante;
 import Model.FabricaDeGato;
-import Model.FabricaDeLago;
 import Model.FabricaDeLeao;
 import Model.FabricaDeLeopardo;
 import Model.FabricaDeLobo;
-import Model.FabricaDeObjetoTabuleiro;
 import Model.FabricaDePeca;
 import Model.FabricaDeRato;
 import Model.FabricaDeTigre;
@@ -55,6 +56,7 @@ public class TabuleiroController {
     private ConcretBuilderJogador1 builderJogador1;
     private ConcretBuilderJogador2 builderJogador2;
     private HashMap<String, FabricaDePeca> fabricas;
+    private ConcretBuilderTabuleiro builderTabuleiro;
     
     public TabuleiroController(){
         objetosTabuleiro      = new ObjetoTabuleiro[7][9];
@@ -73,13 +75,14 @@ public class TabuleiroController {
         builderJogador1       = new ConcretBuilderJogador1();
         builderJogador2       = new ConcretBuilderJogador2();
         fabricas              = new HashMap<String, FabricaDePeca>();
+        builderTabuleiro      = new ConcretBuilderTabuleiro();
         criaFabricas();
     }
     
     public void adicionaTodasPecasNoTabuleiro(){    
         criaPecasJogadores(builderJogador1);
         criaPecasJogadores(builderJogador2);
-        criaObjetosTabuleiro(new FabricaDeLago());        
+        criaObjetosTabuleiro(builderTabuleiro);               
         notificarCarregamentoTabuleiro();
     }
     
@@ -149,6 +152,11 @@ public class TabuleiroController {
                 notificaFimJogo();
             }
         }       
+    }
+    
+    private void criaObjetosTabuleiro(BuilderObjetoTabuleiro builder){
+        DiretorTabuleiro diretor = new DiretorTabuleiro(builder);
+        diretor.construir(objetosTabuleiro);
     }
     
     private void criaPecasJogadores(BuilderJogador builder){
@@ -280,11 +288,6 @@ public class TabuleiroController {
         for (ObservadorTabuleiro obs : observadores){
             obs.notificarCarregamentoTabuleiro();
         }
-    }    
-    
-    private void criaObjetosTabuleiro(FabricaDeObjetoTabuleiro fabrica){
-        fabrica.criaObjetoTabuleiro(objetosTabuleiro);
-        fabrica.criaObjetoTabuleiro(objetosPadroes);
     }    
     
     private void enviarMensagemObservadores(String mensagem){
