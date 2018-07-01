@@ -6,6 +6,12 @@ package Model;
  */
 public abstract class BuilderJogador {
     
+    protected Jogador jogador;
+    
+    public BuilderJogador(Jogador jogador){
+        this.jogador = jogador;
+    }
+    
     public abstract void constroiArmadilha(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoTabuleiro[][] objetosPadroes, FabricaDeArmadilha fabrica);
     public abstract void constroiCachorro(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeCachorro fabrica);
     public abstract void constroiElefante(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeElefante fabrica);

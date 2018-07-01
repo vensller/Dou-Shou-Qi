@@ -20,10 +20,12 @@ import Model.FabricaDePeca;
 import Model.FabricaDeRato;
 import Model.FabricaDeTigre;
 import Model.FabricaDeToca;
+import Model.Jogo;
 import Model.Lago;
 import Model.Leao;
 import Model.ObjetoJogo;
 import Model.ObjetoTabuleiro;
+import Model.ObservadorJogo;
 import Model.ObservadorTabuleiro;
 import Model.Rato;
 import Model.Tigre;
@@ -36,14 +38,11 @@ import java.util.List;
  *
  * @author Ivens
  */
-public class TabuleiroController {
+public class TabuleiroController implements ObservadorJogo{
     
     //objetosTabuleiro[x][y] sendo o tabuleiro em pé 7x9
     //x = coluna, y = linha
-    private ObjetoTabuleiro[][] objetosTabuleiro;
-    private ObjetoTabuleiro[][] objetosPadroes;
     private List<ObservadorTabuleiro> observadores;
-    private int jogadorAtual;
     private ObjetoJogo animalAtual;    
     private AndarUmaCasaParaCima andarPraCima;
     private AndarUmaCasaParaBaixo andarPraBaixo;
@@ -57,12 +56,11 @@ public class TabuleiroController {
     private ConcretBuilderJogador2 builderJogador2;
     private HashMap<String, FabricaDePeca> fabricas;
     private ConcretBuilderTabuleiro builderTabuleiro;
+    private Jogo jogo;
     
-    public TabuleiroController(){
-        objetosTabuleiro      = new ObjetoTabuleiro[7][9];
-        objetosPadroes        = new ObjetoTabuleiro[7][9];
+    public TabuleiroController(String nomeJogador1, String nomeJogador2){        
+        jogo                  = new Jogo(nomeJogador1, nomeJogador2);
         observadores          = new ArrayList<>();
-        jogadorAtual          = 1;
         animalAtual           = null;
         andarPraCima          = new AndarUmaCasaParaCima();
         andarPraBaixo         = new AndarUmaCasaParaBaixo();
@@ -72,10 +70,11 @@ public class TabuleiroController {
         pularLagoParaBaixo    = new PularLagoParaBaixo();
         pularLagoParaEsquerda = new PularLagoParaEsquerda();
         pularLagoParaDireita  = new PularLagoParaDireita();
-        builderJogador1       = new ConcretBuilderJogador1();
-        builderJogador2       = new ConcretBuilderJogador2();
+        builderJogador1       = new ConcretBuilderJogador1(jogo.getJogador1());
+        builderJogador2       = new ConcretBuilderJogador2(jogo.getJogador2());
         fabricas              = new HashMap<String, FabricaDePeca>();
-        builderTabuleiro      = new ConcretBuilderTabuleiro();
+        builderTabuleiro      = new ConcretBuilderTabuleiro();        
+        jogo.observar(this);
         criaFabricas();
     }
     
@@ -91,8 +90,8 @@ public class TabuleiroController {
     }
     
     public String retornaCaminhoImagemPelaPosicao(int coluna, int linha){
-        if (objetosTabuleiro[coluna][linha] != null){
-            return objetosTabuleiro[coluna][linha].getImagem();
+        if (jogo.getObjetosTabuleiro()[coluna][linha] != null){
+            return jogo.getObjetosTabuleiro()[coluna][linha].getImagem();
         }else return "Imagens/grama.png";
     }
     
@@ -101,7 +100,7 @@ public class TabuleiroController {
         boolean fimJogo = false;
         boolean trocouImagem = false;
         
-        if (animalAtual == null){
+        /* if (animalAtual == null){
             if (objetosTabuleiro[coluna][linha] != null){
                 if (objetosTabuleiro[coluna][linha] instanceof Animal){
                     if (((Animal)objetosTabuleiro[coluna][linha]).getJogador() == jogadorAtual){
@@ -151,17 +150,17 @@ public class TabuleiroController {
             if (fimJogo){
                 notificaFimJogo();
             }
-        }       
+        }    */   
     }
     
     private void criaObjetosTabuleiro(BuilderObjetoTabuleiro builder){
         DiretorTabuleiro diretor = new DiretorTabuleiro(builder);
-        diretor.construir(objetosTabuleiro);
+        diretor.construir(jogo.getObjetosTabuleiro());
     }
     
     private void criaPecasJogadores(BuilderJogador builder){
         DiretorJogador diretor = new DiretorJogador(builder, fabricas);
-        diretor.construir(objetosTabuleiro, objetosPadroes);
+        diretor.construir(jogo.getObjetosTabuleiro(), jogo.getObjetosPadroes());
     }
     
     private void notificaMovimentacaoPeca(){
@@ -171,15 +170,15 @@ public class TabuleiroController {
     }
     
     private void notificaFimJogo(){
-        for (ObservadorTabuleiro obs : observadores){
-            obs.notificarFimJogo(jogadorAtual);
+        for (ObservadorTabuleiro obs : observadores){            
+            obs.notificarFimJogo(jogo.retornaJogadorAtual().getNome());
         }
     }
     
     private boolean movimentaPecaPulandoLago(int coluna, int linha){
         boolean movimentou = false;
         
-        if ((animalAtual instanceof Tigre) || (animalAtual instanceof Leao)){
+        /*if ((animalAtual instanceof Tigre) || (animalAtual instanceof Leao)){
             if (linha == animalAtual.getLinha()){
                 if ((coluna == animalAtual.getColuna() + 3)&&(verificaSePodePularLagoParaDireita())){
                     pularLagoParaDireita.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(coluna, linha));
@@ -200,11 +199,11 @@ public class TabuleiroController {
                 }
             }
         }        
-        
+        */
         return movimentou;
     }
     
-    private boolean verificaSePodePularLagoParaEsquerda(){
+    /*private boolean verificaSePodePularLagoParaEsquerda(){
         for (int i = -2; i < 0; i++){
             if (!(objetosTabuleiro[animalAtual.getColuna() + i][animalAtual.getLinha()] instanceof Lago)){
                 return false;
@@ -242,11 +241,11 @@ public class TabuleiroController {
         
         return true;
     }
-    
+    */
     private boolean movimentaPecaParaPosicao(int coluna, int linha){
         boolean movimentou = false;
                 
-        if (coluna == animalAtual.getColuna()){
+        /*if (coluna == animalAtual.getColuna()){
             if ((linha) == (animalAtual.getLinha() + 1)){                                               
                 andarPraBaixo.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(animalAtual.getColuna(), animalAtual.getLinha()));
                 movimentou = true;
@@ -271,19 +270,14 @@ public class TabuleiroController {
         if (!movimentou){
             movimentou = movimentaPecaPulandoLago(coluna, linha);
         }
-        
+        */
         return movimentou;
     }
     
     private ObjetoTabuleiro retornaObjetoPadraoPosicao(int coluna, int linha){        
-        return objetosPadroes[coluna][linha];        
+        return jogo.getObjetosPadroes()[coluna][linha];        
     }
     
-    private void inverteJogador(){
-        if (jogadorAtual == 1) jogadorAtual = 2;
-        else jogadorAtual = 1;    
-    }
-
     private void notificarCarregamentoTabuleiro(){
         for (ObservadorTabuleiro obs : observadores){
             obs.notificarCarregamentoTabuleiro();
@@ -313,6 +307,11 @@ public class TabuleiroController {
         for (ObservadorTabuleiro obs : observadores){
             obs.notificaTrocouImagem(imagem);
         }
+    }
+
+    @Override
+    public void notificarJogoEncerrado() {
+        this.notificaFimJogo();
     }
         
 }

@@ -17,9 +17,11 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
     private TabuleiroController tabuleiroController;
     private HashMap<String, ImageIcon> imagens;        
     
-    public TabuleiroTableModel(){        
+    public TabuleiroTableModel(){              
+        String jogador1     = JOptionPane.showInputDialog("Digite o nome do jogador 1:");
+        String jogador2     = JOptionPane.showInputDialog("Digite o nome do jogador 2:");
         imagens             = new HashMap<String, ImageIcon>();        
-        tabuleiroController = new TabuleiroController();
+        tabuleiroController = new TabuleiroController(jogador1, jogador2);
         tabuleiroController.observarTabuleiro(this);    
         tabuleiroController.adicionaTodasPecasNoTabuleiro();        
     }
@@ -75,8 +77,8 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
     }
 
     @Override
-    public void notificarFimJogo(int jogadorVencedor) {
-        JOptionPane.showMessageDialog(null, "Fim do jogo! Parabéns jogador " + jogadorVencedor + "!");
+    public void notificarFimJogo(String jogadorVencedor) {
+        JOptionPane.showMessageDialog(null, "Fim do jogo! Parabéns " + jogadorVencedor + "!");
         System.exit(0);
     }
 

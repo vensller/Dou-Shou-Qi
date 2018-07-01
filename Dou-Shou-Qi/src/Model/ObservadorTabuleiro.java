@@ -9,7 +9,7 @@ public interface ObservadorTabuleiro {
     void notificarCarregamentoTabuleiro();
     void receberMensagem(String mensagem);
     void notificarAlteracaoTabuleiro();
-    void notificarFimJogo(int jogadorVencedor);
+    void notificarFimJogo(String jogadorVencedor);
     void notificaTrocouImagem(String imagem);
     
 }

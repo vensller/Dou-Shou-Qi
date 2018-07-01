@@ -1,13 +1,12 @@
 package Model;
 
 import Model.Animal;
-import Model.ObjetoJogo;
 
 /**
  *
  * @author Ivens
  */
-public class Rato extends ObjetoJogo implements Animal{    
+public class Rato extends Animal{    
     
     private boolean estaNoLago;
 
@@ -38,4 +37,14 @@ public class Rato extends ObjetoJogo implements Animal{
     public void setEstaNoLago(boolean estaNoLago) {
         this.estaNoLago = estaNoLago;
     }   
+
+    @Override
+    public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void verificarPosicoesPossiveis() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
