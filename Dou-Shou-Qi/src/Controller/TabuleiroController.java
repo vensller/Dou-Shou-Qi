@@ -2,13 +2,9 @@ package Controller;
 
 import Model.Animal;
 import Model.Armadilha;
-import Model.BuilderJogador;
-import Model.BuilderObjetoTabuleiro;
-import Model.ConcretBuilderJogador1;
-import Model.ConcretBuilderJogador2;
-import Model.ConcretBuilderTabuleiro;
-import Model.DiretorJogador;
-import Model.DiretorTabuleiro;
+import Model.CriarTabuleiro;
+import Model.CriarTabuleiroHorizontal;
+import Model.CriarTabuleiroVertical;
 import Model.FabricaDeArmadilha;
 import Model.FabricaDeCachorro;
 import Model.FabricaDeElefante;
@@ -52,13 +48,11 @@ public class TabuleiroController implements ObservadorJogo{
     private PularLagoParaCima pularLagoParaCima;
     private PularLagoParaEsquerda pularLagoParaEsquerda;
     private PularLagoParaDireita pularLagoParaDireita;    
-    private ConcretBuilderJogador1 builderJogador1;
-    private ConcretBuilderJogador2 builderJogador2;
     private HashMap<String, FabricaDePeca> fabricas;
-    private ConcretBuilderTabuleiro builderTabuleiro;
     private Jogo jogo;
+    private CriarTabuleiro criarTabuleiro;
     
-    public TabuleiroController(String nomeJogador1, String nomeJogador2){        
+    public TabuleiroController(String nomeJogador1, String nomeJogador2, boolean vertical){        
         jogo                  = new Jogo(nomeJogador1, nomeJogador2);
         observadores          = new ArrayList<>();
         animalAtual           = null;
@@ -70,18 +64,16 @@ public class TabuleiroController implements ObservadorJogo{
         pularLagoParaBaixo    = new PularLagoParaBaixo();
         pularLagoParaEsquerda = new PularLagoParaEsquerda();
         pularLagoParaDireita  = new PularLagoParaDireita();
-        builderJogador1       = new ConcretBuilderJogador1(jogo.getJogador1());
-        builderJogador2       = new ConcretBuilderJogador2(jogo.getJogador2());
         fabricas              = new HashMap<String, FabricaDePeca>();
-        builderTabuleiro      = new ConcretBuilderTabuleiro();        
+        if (vertical)
+            criarTabuleiro    = new CriarTabuleiroVertical();
+        else criarTabuleiro   = new CriarTabuleiroHorizontal();
         jogo.observar(this);
         criaFabricas();
     }
     
     public void adicionaTodasPecasNoTabuleiro(){    
-        criaPecasJogadores(builderJogador1);
-        criaPecasJogadores(builderJogador2);
-        criaObjetosTabuleiro(builderTabuleiro);               
+        criarTabuleiro.criarTabuleiro(jogo);
         notificarCarregamentoTabuleiro();
     }
     
@@ -152,17 +144,7 @@ public class TabuleiroController implements ObservadorJogo{
             }
         }    */   
     }
-    
-    private void criaObjetosTabuleiro(BuilderObjetoTabuleiro builder){
-        DiretorTabuleiro diretor = new DiretorTabuleiro(builder);
-        diretor.construir(jogo.getObjetosTabuleiro());
-    }
-    
-    private void criaPecasJogadores(BuilderJogador builder){
-        DiretorJogador diretor = new DiretorJogador(builder, fabricas);
-        diretor.construir(jogo.getObjetosTabuleiro(), jogo.getObjetosPadroes());
-    }
-    
+        
     private void notificaMovimentacaoPeca(){
         for (ObservadorTabuleiro obs : observadores){
             obs.notificarAlteracaoTabuleiro();

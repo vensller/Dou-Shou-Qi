@@ -20,8 +20,10 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
     public TabuleiroTableModel(){              
         String jogador1     = JOptionPane.showInputDialog("Digite o nome do jogador 1:");
         String jogador2     = JOptionPane.showInputDialog("Digite o nome do jogador 2:");
+        int opcao = JOptionPane.showConfirmDialog(null, "O Tabuleiro deve ser vertical ou horizontal? Se sim, será vertical, se não, horizontal!", "Tabuleiro", JOptionPane.YES_NO_OPTION);
+        boolean vertical    = opcao == JOptionPane.YES_OPTION;
         imagens             = new HashMap<String, ImageIcon>();        
-        tabuleiroController = new TabuleiroController(jogador1, jogador2);
+        tabuleiroController = new TabuleiroController(jogador1, jogador2, vertical);
         tabuleiroController.observarTabuleiro(this);    
         tabuleiroController.adicionaTodasPecasNoTabuleiro();        
     }
