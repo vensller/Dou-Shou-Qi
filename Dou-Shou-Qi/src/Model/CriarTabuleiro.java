@@ -6,6 +6,6 @@ package Model;
  */
 public interface CriarTabuleiro {
     
-    void criarTabuleiro(Jogo jogo);
+    void criarTabuleiro();
     
 }

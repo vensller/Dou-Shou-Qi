@@ -10,14 +10,14 @@ public class CriarTabuleiroVertical implements CriarTabuleiro{
         
     private HashMap<String, FabricaDePeca> fabricas;
     private Jogo jogo;
-    
-    public CriarTabuleiroVertical(){
-        fabricas = new HashMap<String, FabricaDePeca>();
-        this.criaFabricas();
-    }
+
+    public CriarTabuleiroVertical(HashMap<String, FabricaDePeca> fabricas, Jogo jogo) {
+        this.fabricas = fabricas;
+        this.jogo = jogo;
+    }   
     
     @Override
-    public void criarTabuleiro(Jogo jogo) {
+    public void criarTabuleiro() {
         jogo.setObjetosTabuleiro(new ObjetoTabuleiro[7][9]);
         jogo.setObjetosPadroes(new ObjetoTabuleiro[7][9]);
         ConcretBuilderJogador1 builderJogador1             = new ConcretBuilderJogador1(jogo.getJogador1());
@@ -45,19 +45,6 @@ public class CriarTabuleiroVertical implements CriarTabuleiro{
     private void criaTabuleiro(BuilderObjetoTabuleiro builder){
         DiretorTabuleiro diretor = new DiretorTabuleiro(builder);
         diretor.construir(jogo.getObjetosTabuleiro());
-    }
-    
-    private void criaFabricas(){
-        fabricas.put("Armadilha", new FabricaDeArmadilha());
-        fabricas.put("Cachorro", new FabricaDeCachorro());
-        fabricas.put("Elefante", new FabricaDeElefante());
-        fabricas.put("Gato", new FabricaDeGato());
-        fabricas.put("Leao", new FabricaDeLeao());
-        fabricas.put("Leopardo", new FabricaDeLeopardo());
-        fabricas.put("Lobo", new FabricaDeLobo());
-        fabricas.put("Rato", new FabricaDeRato());
-        fabricas.put("Tigre", new FabricaDeTigre());
-        fabricas.put("Toca", new FabricaDeToca());       
     }
     
 }

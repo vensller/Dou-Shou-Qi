@@ -48,6 +48,7 @@ public class TabuleiroController implements ObservadorJogo{
     private PularLagoParaDireita pularLagoParaDireita;    
     private Jogo jogo;
     private CriarTabuleiro criarTabuleiro;
+    private HashMap<String, FabricaDePeca> fabricas;
     
     public TabuleiroController(String nomeJogador1, String nomeJogador2, boolean vertical){        
         jogo                  = new Jogo(nomeJogador1, nomeJogador2);
@@ -61,14 +62,29 @@ public class TabuleiroController implements ObservadorJogo{
         pularLagoParaBaixo    = new PularLagoParaBaixo();
         pularLagoParaEsquerda = new PularLagoParaEsquerda();
         pularLagoParaDireita  = new PularLagoParaDireita();
-        if (vertical)
-            criarTabuleiro    = new CriarTabuleiroVertical();
-        else criarTabuleiro   = new CriarTabuleiroHorizontal();
+        fabricas              = new HashMap<String, FabricaDePeca>();
+        criaFabricas();
         jogo.observar(this);
+        if (vertical)
+            criarTabuleiro    = new CriarTabuleiroVertical(fabricas, jogo);
+        else criarTabuleiro   = new CriarTabuleiroHorizontal(fabricas, jogo);
+    }   
+        
+    private void criaFabricas(){
+        fabricas.put("Armadilha", new FabricaDeArmadilha());
+        fabricas.put("Cachorro", new FabricaDeCachorro());
+        fabricas.put("Elefante", new FabricaDeElefante());
+        fabricas.put("Gato", new FabricaDeGato());
+        fabricas.put("Leao", new FabricaDeLeao());
+        fabricas.put("Leopardo", new FabricaDeLeopardo());
+        fabricas.put("Lobo", new FabricaDeLobo());
+        fabricas.put("Rato", new FabricaDeRato());
+        fabricas.put("Tigre", new FabricaDeTigre());
+        fabricas.put("Toca", new FabricaDeToca());       
     }
     
     public void adicionaTodasPecasNoTabuleiro(){    
-        criarTabuleiro.criarTabuleiro(jogo);
+        criarTabuleiro.criarTabuleiro();
         notificarCarregamentoTabuleiro();
     }
     

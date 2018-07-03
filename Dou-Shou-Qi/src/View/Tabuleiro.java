@@ -21,8 +21,11 @@ public class Tabuleiro extends javax.swing.JFrame{
         jTabuleiro.setDefaultRenderer(Object.class, renderer);
         tableModel = new TabuleiroTableModel();        
         jTabuleiro.setModel(tableModel);    
-        setResizable(false);
-        jTabuleiro.addMouseListener(new TabuleiroMouseListener());           
+        setResizable(true);
+        jTabuleiro.addMouseListener(new TabuleiroMouseListener());
+        if (tableModel.getRowCount() == 7){
+            setSize(getSize().height, getSize().height-30);
+        }
     }
     
     public synchronized static Tabuleiro getInstance(){

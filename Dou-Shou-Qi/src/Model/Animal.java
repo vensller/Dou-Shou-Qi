@@ -36,7 +36,7 @@ public abstract class Animal extends ObjetoJogo implements Peca{
         
         if (objetosTabuleiro.length == 7){
             definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
-        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal();
+        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
         
         posicoesPossiveis = definirPosicoes.verificarPosicoesPossiveis(linha, coluna, getForca());
         

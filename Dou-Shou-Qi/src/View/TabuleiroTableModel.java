@@ -4,7 +4,6 @@ import Controller.TabuleiroController;
 import Model.ObservadorTabuleiro;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
@@ -15,41 +14,50 @@ import javax.swing.table.AbstractTableModel;
 public class TabuleiroTableModel extends AbstractTableModel implements ObservadorTabuleiro{
 
     private TabuleiroController tabuleiroController;
-    private HashMap<String, ImageIcon> imagens;        
+    private HashMap<String, ImageIcon> imagens;     
+    boolean vertical = true;
     
     public TabuleiroTableModel(){              
-        String jogador1     = JOptionPane.showInputDialog("Digite o nome do jogador 1:");
+        String jogador1     = JOptionPane.showInputDialog("Digite o nome do jogador 1:");        
         String jogador2     = JOptionPane.showInputDialog("Digite o nome do jogador 2:");
-        int opcao = JOptionPane.showConfirmDialog(null, "O Tabuleiro deve ser vertical ou horizontal? Se sim, será vertical, se não, horizontal!", "Tabuleiro", JOptionPane.YES_NO_OPTION);
-        boolean vertical    = opcao == JOptionPane.YES_OPTION;
-        imagens             = new HashMap<String, ImageIcon>();        
-        tabuleiroController = new TabuleiroController(jogador1, jogador2, vertical);
-        tabuleiroController.observarTabuleiro(this);    
-        tabuleiroController.adicionaTodasPecasNoTabuleiro();        
+        int opcao           = JOptionPane.showConfirmDialog(null, "O Tabuleiro deve ser vertical ou horizontal? Se sim, será vertical, se não, horizontal!", "Tabuleiro", JOptionPane.YES_NO_OPTION);
+        vertical            = opcao == JOptionPane.YES_OPTION;
+        if (opcao == JOptionPane.CLOSED_OPTION){
+            System.exit(0);
+        }else{
+            imagens             = new HashMap<String, ImageIcon>();        
+            tabuleiroController = new TabuleiroController(jogador1, jogador2, vertical);
+            tabuleiroController.observarTabuleiro(this);    
+            tabuleiroController.adicionaTodasPecasNoTabuleiro();        
+        }
     }
     
     @Override
     public int getRowCount() {
-        return 9;
+        if (vertical)
+            return 9;
+        else return 7;
     }
 
     @Override
     public int getColumnCount() {
-        return 7;
+        if (vertical)
+            return 7;
+        else return 9;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return imagens.get(tabuleiroController.retornaCaminhoImagemPelaPosicao(columnIndex, rowIndex)).getImage();
-    }
+    }    
 
     @Override
     public void notificarCarregamentoTabuleiro() {
-        for (int x = 0; x < 7; x++){
-            for (int y = 0; y < 9; y++){
+        for (int x = 0; x < getColumnCount(); x++){
+            for (int y = 0; y < getRowCount(); y++){
                 String caminho = tabuleiroController.retornaCaminhoImagemPelaPosicao(x, y);
                 if (imagens.get(caminho) == null){                    
-                    imagens.put(caminho, new ImageIcon(caminho));                                 
+                    imagens.put(caminho, new ImageIcon(caminho));    
                     setValueAt(imagens.get(caminho).getImage(), x, y);
                 }
             }
