@@ -23,4 +23,9 @@ public class Armadilha extends ObjetoJogo implements Peca{
         return this.jogador;
     }
     
+    @Override
+    public int getForca(){
+        return 0;
+    }
+    
 }

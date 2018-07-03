@@ -11,9 +11,14 @@ public class JogoIniciado extends JogoEstado{
     }
 
     @Override
-    public void movimentaPeca() throws Exception{       
+    public void movimentaPeca() throws Exception{    
         
-        if (jogo.getJogador1().getPecas().isEmpty() || jogo.getJogador2().getPecas().isEmpty()){
+        
+        VisitorAnimaisQuantidade v1 = new VisitorAnimaisQuantidade();
+        VisitorAnimaisQuantidade v2 = new VisitorAnimaisQuantidade();
+        jogo.getJogador1().accept(v1);
+        jogo.getJogador2().accept(v2);
+        if (v1.getQtd() == 0 || v2.getQtd() == 0){
             jogo.setEstado(new JogoFinalizado(jogo));
         }
     }

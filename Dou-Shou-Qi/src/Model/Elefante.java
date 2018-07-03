@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Animal;
+import java.util.List;
 
 /**
  *
@@ -8,7 +9,7 @@ import Model.Animal;
  */
 public class Elefante extends Animal{    
 
-    public Elefante(String imagem, int jogador, int linha, int coluna){
+    public Elefante(String imagem, int jogador, int linha, int coluna) {
         super(imagem, jogador, linha, coluna);
     }
     
@@ -32,9 +33,4 @@ public class Elefante extends Animal{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void verificarPosicoesPossiveis() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

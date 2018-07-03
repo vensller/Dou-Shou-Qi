@@ -6,6 +6,7 @@ package Model;
  */
 public interface ObjetoTabuleiro {
     
-    String getImagem();     
+    String getImagem();         
+    int getForca();
     
 }

@@ -31,10 +31,5 @@ public class Gato extends Animal{
     public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void verificarPosicoesPossiveis() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

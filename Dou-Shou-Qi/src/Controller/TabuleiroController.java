@@ -36,8 +36,6 @@ import java.util.List;
  */
 public class TabuleiroController implements ObservadorJogo{
     
-    //objetosTabuleiro[x][y] sendo o tabuleiro em pé 7x9
-    //x = coluna, y = linha
     private List<ObservadorTabuleiro> observadores;
     private ObjetoJogo animalAtual;    
     private AndarUmaCasaParaCima andarPraCima;
@@ -48,7 +46,6 @@ public class TabuleiroController implements ObservadorJogo{
     private PularLagoParaCima pularLagoParaCima;
     private PularLagoParaEsquerda pularLagoParaEsquerda;
     private PularLagoParaDireita pularLagoParaDireita;    
-    private HashMap<String, FabricaDePeca> fabricas;
     private Jogo jogo;
     private CriarTabuleiro criarTabuleiro;
     
@@ -64,12 +61,10 @@ public class TabuleiroController implements ObservadorJogo{
         pularLagoParaBaixo    = new PularLagoParaBaixo();
         pularLagoParaEsquerda = new PularLagoParaEsquerda();
         pularLagoParaDireita  = new PularLagoParaDireita();
-        fabricas              = new HashMap<String, FabricaDePeca>();
         if (vertical)
             criarTabuleiro    = new CriarTabuleiroVertical();
         else criarTabuleiro   = new CriarTabuleiroHorizontal();
         jogo.observar(this);
-        criaFabricas();
     }
     
     public void adicionaTodasPecasNoTabuleiro(){    
@@ -270,20 +265,7 @@ public class TabuleiroController implements ObservadorJogo{
         for (ObservadorTabuleiro obs : observadores){
             obs.receberMensagem(mensagem);
         }
-    }
-    
-    private void criaFabricas(){
-        fabricas.put("Armadilha", new FabricaDeArmadilha());
-        fabricas.put("Cachorro", new FabricaDeCachorro());
-        fabricas.put("Elefante", new FabricaDeElefante());
-        fabricas.put("Gato", new FabricaDeGato());
-        fabricas.put("Leao", new FabricaDeLeao());
-        fabricas.put("Leopardo", new FabricaDeLeopardo());
-        fabricas.put("Lobo", new FabricaDeLobo());
-        fabricas.put("Rato", new FabricaDeRato());
-        fabricas.put("Tigre", new FabricaDeTigre());
-        fabricas.put("Toca", new FabricaDeToca());       
-    }
+    }   
     
     private void notificaImagemAlterada(String imagem){
         for (ObservadorTabuleiro obs : observadores){

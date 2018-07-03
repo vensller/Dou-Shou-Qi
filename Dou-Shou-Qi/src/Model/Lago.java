@@ -18,5 +18,10 @@ public class Lago implements ObjetoTabuleiro{
     public String getImagem() {
         return this.imagem;
     }
+    
+    @Override
+    public int getForca(){
+        return 0;
+    }
    
 }

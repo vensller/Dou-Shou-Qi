@@ -1,17 +1,18 @@
 package Model;
 
 import Model.Animal;
+import java.util.List;
 
 /**
  *
  * @author Ivens
  */
 public class Cachorro extends Animal{
-    
-    public Cachorro(String imagem, int jogador, int linha, int coluna) {
-        super(imagem, jogador, linha, coluna);    
-    }    
 
+    public Cachorro(String imagem, int jogador, int linha, int coluna) {
+        super(imagem, jogador, linha, coluna);
+    }
+    
     @Override
     public int getForca() {
         return 3;
@@ -29,11 +30,6 @@ public class Cachorro extends Animal{
 
     @Override
     public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void verificarPosicoesPossiveis() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

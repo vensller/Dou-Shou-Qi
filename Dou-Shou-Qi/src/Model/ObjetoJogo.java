@@ -9,8 +9,8 @@ public abstract class ObjetoJogo {
     protected String imagem;   
     protected int jogador;
     protected boolean estaNaArmadilha;
-    private int linha;
-    private int coluna;
+    protected int linha;
+    protected int coluna;
     private String imagemOriginal;
     
     public ObjetoJogo(String imagem, int jogador, int linha, int coluna){

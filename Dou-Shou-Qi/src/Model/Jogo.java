@@ -17,8 +17,8 @@ public class Jogo {
     private List<ObservadorJogo> observadoresJogo;
 
     public Jogo(String nomeJogador1, String nomeJogador2) {
-        objetosTabuleiro = new ObjetoTabuleiro[7][9];
-        objetosPadroes   = new ObjetoTabuleiro[7][9];
+        objetosTabuleiro = null;
+        objetosPadroes   = null;
         estado           = new JogoAguardandoInicio(this);
         jogador1         = new Jogador(nomeJogador1);
         jogador2         = new Jogador(nomeJogador2);

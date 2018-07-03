@@ -51,7 +51,7 @@ public class Jogador {
         pecas.remove(peca);
     }
     
-    public void accept(VisitorAnimaisJogador visitor) throws Exception{
+    public void accept(VisitorAnimaisJogador visitor){
         for (Animal a : pecas){
             visitor.visit(a);
         }
