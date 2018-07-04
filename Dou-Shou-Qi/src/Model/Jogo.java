@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Jogo {
 
-    private ObjetoTabuleiro[][] objetosTabuleiro;
-    private ObjetoTabuleiro[][] objetosPadroes;
+    private Peca[][] objetosTabuleiro;
+    private Peca[][] objetosPadroes;
     private Jogador jogador1;
     private Jogador jogador2;
     private JogoEstado estado;
@@ -26,19 +26,19 @@ public class Jogo {
         jogador1.setJogadorAtual(true);
     }
 
-    public ObjetoTabuleiro[][] getObjetosTabuleiro() {
+    public Peca[][] getObjetosTabuleiro() {
         return objetosTabuleiro;
     }
 
-    public void setObjetosTabuleiro(ObjetoTabuleiro[][] objetosTabuleiro) {
+    public void setObjetosTabuleiro(Peca[][] objetosTabuleiro) {
         this.objetosTabuleiro = objetosTabuleiro;
     }
 
-    public ObjetoTabuleiro[][] getObjetosPadroes() {
+    public Peca[][] getObjetosPadroes() {
         return objetosPadroes;
     }
 
-    public void setObjetosPadroes(ObjetoTabuleiro[][] objetosPadroes) {
+    public void setObjetosPadroes(Peca[][] objetosPadroes) {
         this.objetosPadroes = objetosPadroes;
     }
 

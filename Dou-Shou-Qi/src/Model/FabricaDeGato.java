@@ -8,12 +8,12 @@ public class FabricaDeGato extends FabricaDePeca{
 
     @Override
     public Peca criaPecaJogador1(int linha, int coluna) {
-        return new Gato("Imagens/gato1.png", 1, linha, coluna);
+        return new Gato("Imagens/gato1.png", linha, coluna);
     }
 
     @Override
     public Peca criaPecaJogador2(int linha, int coluna) {
-        return new Gato("Imagens/gato2.png", 2, linha, coluna);
+        return new Gato("Imagens/gato2.png", linha, coluna);
     }
     
 }

@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface DefinirPosicoesPeca {
     
-    List<Posicao> verificarPosicoesPossiveis(int linha, int coluna, int forca);
+    List<Posicao> verificarPosicoesPossiveis(int linha, int coluna, Animal animal);
     boolean posicaoEhLago(int linha, int coluna);
     
 }

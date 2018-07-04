@@ -1,31 +1,20 @@
 package Model;
 
-import Model.ObjetoJogo;
 import Model.Peca;
 
 /**
  *
  * @author Ivens
  */
-public class Toca extends ObjetoJogo implements Peca{
+public class Toca extends Peca {
 
-    public Toca(String imagem, int jogador, int linha, int coluna) {
-        super(imagem, jogador, linha, coluna);
+    public Toca(String imagem, int linha, int coluna) {
+        super(imagem, linha, coluna);
     }
-
-    @Override
-    public String getImagem() {
-        return this.imagem;
-    }
-    
-    @Override
-    public int getJogador(){
-        return this.jogador;
-    }
-    
+        
     @Override
     public int getForca(){
         return 0;
     }
-    
+
 }

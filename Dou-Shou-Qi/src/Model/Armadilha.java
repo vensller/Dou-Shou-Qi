@@ -1,16 +1,15 @@
 package Model;
 
-import Model.ObjetoJogo;
 import Model.Peca;
 
 /**
  *
  * @author Ivens
  */
-public class Armadilha extends ObjetoJogo implements Peca{
+public class Armadilha extends Peca{
 
-    public Armadilha(String imagem, int jogador, int linha, int coluna) {
-        super(imagem, jogador, linha, coluna);
+    public Armadilha(String imagem, int linha, int coluna) {
+        super(imagem, linha, coluna);
     }
 
     @Override
@@ -19,12 +18,12 @@ public class Armadilha extends ObjetoJogo implements Peca{
     }
     
     @Override
-    public int getJogador(){
-        return this.jogador;
+    public void accept(VisitorAtaque visitor){
+        visitor.visit(this);        
     }
-    
+
     @Override
-    public int getForca(){
+    public int getForca() {
         return 0;
     }
     

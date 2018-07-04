@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class Cachorro extends Animal{
 
-    public Cachorro(String imagem, int jogador, int linha, int coluna) {
-        super(imagem, jogador, linha, coluna);
+    public Cachorro(String imagem, int linha, int coluna) {
+        super(imagem, linha, coluna);
     }
     
     @Override
@@ -18,17 +18,7 @@ public class Cachorro extends Animal{
         return 3;
     }
 
-    @Override
-    public String getImagem() {
-        return this.imagem;
-    }
-    
-    @Override
-    public int getJogador(){
-        return this.jogador;
-    }  
-
-    @Override
+   @Override
     public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

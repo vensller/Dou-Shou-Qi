@@ -11,10 +11,10 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
 
     private List<Posicao> posicoes;
     private List<Posicao> lagos;
-    private int forca;
-    private ObjetoTabuleiro[][] objetosTabuleiro;
+    private List<Peca> objetosVerificar;
+    private Peca[][] objetosTabuleiro;
 
-    public DefinirPosicoesPossiveisHorizontal(ObjetoTabuleiro[][] objetosTabuleiro) {
+    public DefinirPosicoesPossiveisHorizontal(Peca[][] objetosTabuleiro) {
         this.objetosTabuleiro = objetosTabuleiro;
         this.lagos = new ArrayList<Posicao>();
         criaLagos();
@@ -36,9 +36,9 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     } 
     
     @Override
-    public List<Posicao> verificarPosicoesPossiveis(int linha, int coluna, int forca) {
+    public List<Posicao> verificarPosicoesPossiveis(int linha, int coluna, Animal animal) {
         posicoes = new ArrayList<Posicao>();
-        this.forca = forca;
+        objetosVerificar = new ArrayList<Peca>();
         verificaPosicaoAcima(linha, coluna);
         verificaPosicaoAbaixo(linha, coluna);
         verificaPosicaoEsquerda(linha, coluna);
@@ -49,9 +49,9 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     private void verificaPosicaoAcima(int linha, int coluna){
         if (linha - 1 >= 0){
             if (!posicaoEhLago(linha - 1, coluna)){
-                if ((objetosTabuleiro[coluna][linha - 1] != null) && (forca > objetosTabuleiro[coluna][linha - 1].getForca())){
+                if (objetosTabuleiro[coluna][linha - 1] == null){
                     posicoes.add(new Posicao(coluna, linha - 1));
-                }
+                }else objetosVerificar.add(objetosTabuleiro[coluna][linha - 1]);
             }
         }
     }
@@ -59,9 +59,9 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     private void verificaPosicaoAbaixo(int linha, int coluna){
         if (linha + 1 <= 6){
             if (!posicaoEhLago(linha + 1, coluna)){
-                if ((objetosTabuleiro[coluna][linha + 1] != null) && (forca > objetosTabuleiro[coluna][linha + 1].getForca())){
+                if (objetosTabuleiro[coluna][linha + 1] == null){
                     posicoes.add(new Posicao(coluna, linha + 1));
-                }
+                }else objetosVerificar.add(objetosTabuleiro[coluna][linha + 1]);
             }
         }
     }
@@ -69,9 +69,9 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     private void verificaPosicaoEsquerda(int linha, int coluna){
         if (coluna - 1 >= 0){
             if (!posicaoEhLago(linha, coluna - 1)){
-                if ((objetosTabuleiro[coluna - 1][linha] != null) && (forca > objetosTabuleiro[coluna - 1][linha].getForca())){
+                if (objetosTabuleiro[coluna - 1][linha] == null){
                     posicoes.add(new Posicao(coluna - 1, linha));
-                }
+                }else objetosVerificar.add(objetosTabuleiro[coluna - 1][linha]);
             }  
         }
     }
@@ -79,9 +79,9 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     private void verificaPosicaoDireita(int linha, int coluna){
         if (coluna + 1 <= 8){
             if (!posicaoEhLago(linha, coluna + 1)){
-                if ((objetosTabuleiro[coluna + 1][linha] != null) && (forca > objetosTabuleiro[coluna + 1][linha].getForca())){
+                if (objetosTabuleiro[coluna + 1][linha] == null){
                     posicoes.add(new Posicao(coluna + 1, linha));
-                }
+                }else objetosVerificar.add(objetosTabuleiro[coluna + 1][linha]);
             }
         }
     }

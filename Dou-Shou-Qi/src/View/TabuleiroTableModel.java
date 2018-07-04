@@ -18,10 +18,10 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
     boolean vertical = true;
     
     public TabuleiroTableModel(){              
-        String jogador1     = JOptionPane.showInputDialog("Digite o nome do jogador 1:");        
-        String jogador2     = JOptionPane.showInputDialog("Digite o nome do jogador 2:");
-        int opcao           = JOptionPane.showConfirmDialog(null, "O Tabuleiro deve ser vertical ou horizontal? Se sim, será vertical, se não, horizontal!", "Tabuleiro", JOptionPane.YES_NO_OPTION);
-        vertical            = opcao == JOptionPane.YES_OPTION;
+        String jogador1 = JOptionPane.showInputDialog("Digite o nome do jogador 1:");        
+        String jogador2 = JOptionPane.showInputDialog("Digite o nome do jogador 2:");
+        int opcao       = JOptionPane.showConfirmDialog(null, "O Tabuleiro deve ser vertical ou horizontal? Se sim, será vertical, se não, horizontal!", "Tabuleiro", JOptionPane.YES_NO_OPTION);
+        vertical        = opcao == JOptionPane.YES_OPTION;
         if (opcao == JOptionPane.CLOSED_OPTION){
             System.exit(0);
         }else{

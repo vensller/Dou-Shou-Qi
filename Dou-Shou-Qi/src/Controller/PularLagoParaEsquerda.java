@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.ObjetoJogo;
-import Model.ObjetoTabuleiro;
+import Model.Peca;
 
 /**
  *
@@ -10,9 +9,9 @@ import Model.ObjetoTabuleiro;
 public class PularLagoParaEsquerda implements Command{
 
     @Override
-    public void execute(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoJogo animal, ObjetoTabuleiro padrao) {
+    public void execute(Peca[][] objetosTabuleiro, Peca animal, Peca padrao) {
         objetosTabuleiro[animal.getColuna()][animal.getLinha()] = padrao;
-        objetosTabuleiro[animal.getColuna() - 3][animal.getLinha()] = (ObjetoTabuleiro)animal;
+        objetosTabuleiro[animal.getColuna() - 3][animal.getLinha()] = (Peca)animal;
         animal.setColuna(animal.getColuna() - 3);
     }
     

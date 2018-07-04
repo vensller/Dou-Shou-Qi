@@ -6,6 +6,6 @@ package Model;
  */
 public abstract class BuilderObjetoTabuleiro {
     
-    public abstract void criaLagos(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeLago fabrica);
+    public abstract void criaLagos(Peca[][] objetosTabuleiro, FabricaDeLago fabrica);
     
 }

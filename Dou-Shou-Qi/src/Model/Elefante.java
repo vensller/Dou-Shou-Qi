@@ -9,23 +9,13 @@ import java.util.List;
  */
 public class Elefante extends Animal{    
 
-    public Elefante(String imagem, int jogador, int linha, int coluna) {
-        super(imagem, jogador, linha, coluna);
+    public Elefante(String imagem, int linha, int coluna) {
+        super(imagem, linha, coluna);
     }
     
     @Override
     public int getForca() {
         return 8;
-    }
-
-    @Override
-    public String getImagem() {
-        return this.imagem;
-    }
-    
-    @Override
-    public int getJogador(){
-        return this.jogador;
     }
 
     @Override

@@ -11,7 +11,7 @@ public class ConcretBuilderJogador1Horizontal extends BuilderJogador {
     }
 
     @Override
-    public void constroiArmadilha(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoTabuleiro[][] objetosPadroes, FabricaDeArmadilha fabrica) {
+    public void constroiArmadilha(Peca[][] objetosTabuleiro, Peca[][] objetosPadroes, FabricaDeArmadilha fabrica) {
         objetosTabuleiro[0][2] = fabrica.criaPecaJogador1(2, 0); 
         objetosTabuleiro[0][4] = fabrica.criaPecaJogador1(4, 0);
         objetosTabuleiro[1][3] = fabrica.criaPecaJogador1(3, 1); 
@@ -21,56 +21,57 @@ public class ConcretBuilderJogador1Horizontal extends BuilderJogador {
     }
 
     @Override
-    public void constroiCachorro(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeCachorro fabrica) {
+    public void constroiCachorro(Peca[][] objetosTabuleiro, FabricaDeCachorro fabrica) {
         objetosTabuleiro[1][1] = fabrica.criaPecaJogador1(1, 1); 
         jogador.adicionaPeca((Animal) objetosTabuleiro[1][1]);
     }
 
     @Override
-    public void constroiElefante(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeElefante fabrica) {
+    public void constroiElefante(Peca[][] objetosTabuleiro, FabricaDeElefante fabrica) {
         objetosTabuleiro[2][6] = fabrica.criaPecaJogador1(6, 2);         
         jogador.adicionaPeca((Animal) objetosTabuleiro[2][6]);
     }
 
     @Override
-    public void constroiGato(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeGato fabrica) {
+    public void constroiGato(Peca[][] objetosTabuleiro, FabricaDeGato fabrica) {
         objetosTabuleiro[1][5] = fabrica.criaPecaJogador1(5, 1);         
         jogador.adicionaPeca((Animal) objetosTabuleiro[1][5]);
     }
 
     @Override
-    public void constroiLeao(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeLeao fabrica) {
+    public void constroiLeao(Peca[][] objetosTabuleiro, FabricaDeLeao fabrica) {
         objetosTabuleiro[0][0] = fabrica.criaPecaJogador1(0, 0);
         jogador.adicionaPeca((Animal) objetosTabuleiro[0][0]);
     }
 
     @Override
-    public void constroiLeopardo(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeLeopardo fabrica) {
+    public void constroiLeopardo(Peca[][] objetosTabuleiro, FabricaDeLeopardo fabrica) {
         objetosTabuleiro[2][2] = fabrica.criaPecaJogador1(2, 2); 
         jogador.adicionaPeca((Animal) objetosTabuleiro[2][2]);
     }
 
     @Override
-    public void constroiLobo(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeLobo fabrica) {
+    public void constroiLobo(Peca[][] objetosTabuleiro, FabricaDeLobo fabrica) {
         objetosTabuleiro[2][4] = fabrica.criaPecaJogador1(4, 2);
         jogador.adicionaPeca((Animal) objetosTabuleiro[2][4]);
     }
 
     @Override
-    public void constroiRato(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeRato fabrica) {
+    public void constroiRato(Peca[][] objetosTabuleiro, FabricaDeRato fabrica) {
         objetosTabuleiro[2][0] = fabrica.criaPecaJogador1(0, 2);        
         jogador.adicionaPeca((Animal) objetosTabuleiro[2][0]);
     }
 
     @Override
-    public void constroiTigre(ObjetoTabuleiro[][] objetosTabuleiro, FabricaDeTigre fabrica) {
+    public void constroiTigre(Peca[][] objetosTabuleiro, FabricaDeTigre fabrica) {
         objetosTabuleiro[0][6] = fabrica.criaPecaJogador1(6, 0);    
         jogador.adicionaPeca((Animal) objetosTabuleiro[0][6]);
     }
 
     @Override
-    public void constroiToca(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoTabuleiro[][] objetosPadroes, FabricaDeToca fabrica) {
+    public void constroiToca(Peca[][] objetosTabuleiro, Peca[][] objetosPadroes, FabricaDeToca fabrica) {
         objetosTabuleiro[0][3] = fabrica.criaPecaJogador1(3, 0);
         objetosPadroes[0][3] = objetosTabuleiro[0][3];
+        jogador.setToca((Toca)objetosTabuleiro[0][3]);
     }
 }

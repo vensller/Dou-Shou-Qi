@@ -6,9 +6,9 @@ package Model;
  */
 public class VisitorAnimaisSetarTabuleiro implements VisitorAnimaisJogador{
 
-    private ObjetoTabuleiro[][] objetosTabuleiro;
+    private Peca[][] objetosTabuleiro;
 
-    public VisitorAnimaisSetarTabuleiro(ObjetoTabuleiro[][] objetosTabuleiro) {
+    public VisitorAnimaisSetarTabuleiro(Peca[][] objetosTabuleiro) {
         this.objetosTabuleiro = objetosTabuleiro;
     }
         

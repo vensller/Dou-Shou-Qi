@@ -6,6 +6,6 @@ package Model;
  */
 public abstract class FabricaDeObjetoTabuleiro {
     
-    public abstract ObjetoTabuleiro criaObjetoTabuleiro();
+    public abstract Peca criaObjetoTabuleiro(int coluna, int linha);
     
 }

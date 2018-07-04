@@ -1,7 +1,6 @@
 package Controller;
 
-import Model.ObjetoJogo;
-import Model.ObjetoTabuleiro;
+import Model.Peca;
 
 /**
  *
@@ -9,5 +8,5 @@ import Model.ObjetoTabuleiro;
  */
 public interface Command {
    
-    void execute(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoJogo animal, ObjetoTabuleiro padrao);
+    void execute(Peca[][] objetosTabuleiro, Peca animal, Peca padrao);
 }

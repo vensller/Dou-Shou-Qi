@@ -1,27 +1,19 @@
 package Model;
 
-import Model.ObjetoTabuleiro;
 
 /**
  *
  * @author Ivens
  */
-public class Lago implements ObjetoTabuleiro{
+public class Lago extends Peca{
 
-    private String imagem;
-    
-    public Lago(String imagem){
-        this.imagem = imagem;
-    }
-    
-    @Override
-    public String getImagem() {
-        return this.imagem;
-    }
-    
+    public Lago(String imagem, int linha, int coluna) {
+        super(imagem, linha, coluna);
+    } 
+            
     @Override
     public int getForca(){
         return 0;
     }
-   
+      
 }

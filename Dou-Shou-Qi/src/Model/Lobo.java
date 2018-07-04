@@ -8,23 +8,13 @@ import Model.Animal;
  */
 public class Lobo extends Animal{
 
-    public Lobo(String imagem, int jogador, int linha, int coluna) {
-        super(imagem, jogador, linha, coluna);        
+    public Lobo(String imagem, int linha, int coluna) {
+        super(imagem, linha, coluna);        
     }
 
     @Override
     public int getForca() {
         return 4;
-    }
-
-    @Override
-    public String getImagem() {
-        return this.imagem;
-    }
-    
-    @Override
-    public int getJogador(){
-        return this.jogador;
     }
 
     @Override

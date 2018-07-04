@@ -18,8 +18,8 @@ public class CriarTabuleiroVertical implements CriarTabuleiro{
     
     @Override
     public void criarTabuleiro() {
-        jogo.setObjetosTabuleiro(new ObjetoTabuleiro[7][9]);
-        jogo.setObjetosPadroes(new ObjetoTabuleiro[7][9]);
+        jogo.setObjetosTabuleiro(new Peca[7][9]);
+        jogo.setObjetosPadroes(new Peca[7][9]);
         ConcretBuilderJogador1 builderJogador1             = new ConcretBuilderJogador1(jogo.getJogador1());
         ConcretBuilderJogador2 builderJogador2             = new ConcretBuilderJogador2(jogo.getJogador2());        
         ConcretBuilderTabuleiro builderTabuleiro           = new ConcretBuilderTabuleiro();

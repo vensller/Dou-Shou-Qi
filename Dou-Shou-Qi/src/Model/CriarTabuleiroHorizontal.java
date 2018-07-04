@@ -18,8 +18,8 @@ public class CriarTabuleiroHorizontal implements CriarTabuleiro{
     
     @Override
     public void criarTabuleiro() {
-        jogo.setObjetosTabuleiro(new ObjetoTabuleiro[9][7]);
-        jogo.setObjetosPadroes(new ObjetoTabuleiro[9][7]);
+        jogo.setObjetosTabuleiro(new Peca[9][7]);
+        jogo.setObjetosPadroes(new Peca[9][7]);
         VisitorAnimaisSetarTabuleiro visitorSetarTabuleiro = new VisitorAnimaisSetarTabuleiro(jogo.getObjetosTabuleiro());
         VisitorAnimaisDefinirPosicoes visitorPosicoes      = new VisitorAnimaisDefinirPosicoes();
         ConcretBuilderJogador1Horizontal builderJogador1   = new ConcretBuilderJogador1Horizontal(jogo.getJogador1());

@@ -11,12 +11,14 @@ public class Jogador {
     
     private String nome;
     private List<Animal> pecas;
+    private Toca toca;
     private boolean jogadorAtual;
 
     public Jogador(String nome) {
         this.nome = nome;
         this.jogadorAtual = false;
         this.pecas = new ArrayList();
+        this.toca = null;
     }
 
     public String getNome() {
@@ -49,6 +51,14 @@ public class Jogador {
     
     public void removePeca(Animal peca){
         pecas.remove(peca);
+    }
+
+    public Toca getToca() {
+        return toca;
+    }
+
+    public void setToca(Toca toca) {
+        this.toca = toca;
     }
     
     public void accept(VisitorAnimaisJogador visitor){

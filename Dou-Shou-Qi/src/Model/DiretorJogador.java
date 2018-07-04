@@ -16,7 +16,7 @@ public class DiretorJogador {
         this.fabricas = fabricas;
     }
     
-    public void construir(ObjetoTabuleiro[][] objetosTabuleiro, ObjetoTabuleiro[][] objetosPadroes){
+    public void construir(Peca[][] objetosTabuleiro, Peca[][] objetosPadroes){
         builder.constroiArmadilha(objetosTabuleiro, objetosPadroes, (FabricaDeArmadilha)fabricas.get("Armadilha"));
         builder.constroiCachorro(objetosTabuleiro, (FabricaDeCachorro)fabricas.get("Cachorro"));
         builder.constroiElefante(objetosTabuleiro, (FabricaDeElefante)fabricas.get("Elefante"));

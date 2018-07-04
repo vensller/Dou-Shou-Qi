@@ -7,8 +7,8 @@ package Model;
 public class FabricaDeLago extends FabricaDeObjetoTabuleiro{
 
     @Override
-    public ObjetoTabuleiro criaObjetoTabuleiro() {
-        return new Lago("Imagens/lago.png");        
+    public Peca criaObjetoTabuleiro(int coluna, int linha) {
+        return new Lago("Imagens/lago.png", linha, coluna);        
     }
     
 }

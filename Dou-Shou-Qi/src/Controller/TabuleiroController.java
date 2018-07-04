@@ -19,10 +19,9 @@ import Model.FabricaDeToca;
 import Model.Jogo;
 import Model.Lago;
 import Model.Leao;
-import Model.ObjetoJogo;
-import Model.ObjetoTabuleiro;
 import Model.ObservadorJogo;
 import Model.ObservadorTabuleiro;
+import Model.Peca;
 import Model.Rato;
 import Model.Tigre;
 import Model.Toca;
@@ -36,8 +35,7 @@ import java.util.List;
  */
 public class TabuleiroController implements ObservadorJogo{
     
-    private List<ObservadorTabuleiro> observadores;
-    private ObjetoJogo animalAtual;    
+    private List<ObservadorTabuleiro> observadores;    
     private AndarUmaCasaParaCima andarPraCima;
     private AndarUmaCasaParaBaixo andarPraBaixo;
     private AndarUmaCasaParaEsquerda andarPraEsquerda;
@@ -52,8 +50,7 @@ public class TabuleiroController implements ObservadorJogo{
     
     public TabuleiroController(String nomeJogador1, String nomeJogador2, boolean vertical){        
         jogo                  = new Jogo(nomeJogador1, nomeJogador2);
-        observadores          = new ArrayList<>();
-        animalAtual           = null;
+        observadores          = new ArrayList<>();        
         andarPraCima          = new AndarUmaCasaParaCima();
         andarPraBaixo         = new AndarUmaCasaParaBaixo();
         andarPraDireita       = new AndarUmaCasaParaDireita();
@@ -267,7 +264,7 @@ public class TabuleiroController implements ObservadorJogo{
         return movimentou;
     }
     
-    private ObjetoTabuleiro retornaObjetoPadraoPosicao(int coluna, int linha){        
+    private Peca retornaObjetoPadraoPosicao(int coluna, int linha){        
         return jogo.getObjetosPadroes()[coluna][linha];        
     }
     
