@@ -18,6 +18,7 @@ import Model.Jogo;
 import Model.ObservadorJogo;
 import Model.ObservadorTabuleiro;
 import Model.Peca;
+import Model.Posicao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,6 +94,16 @@ public class TabuleiroController implements ObservadorJogo{
         boolean fimJogo = false;
         boolean trocouImagem = false;
         
+        if (jogo.retornaJogadorAtual().getAnimalAtual() == null){
+            if (jogo.retornaJogadorAtual().retornaAnimalPelaPosicao(linha, coluna) != null){
+                jogo.retornaJogadorAtual().setAnimalAtual(jogo.retornaJogadorAtual().retornaAnimalPelaPosicao(linha, coluna));
+            }else enviarMensagemObservadores("Não é possível selecionar essa peça!");
+        }else{
+            Posicao posicao = new Posicao(coluna, linha);
+            if (jogo.retornaJogadorAtual().getAnimalAtual().verificaSePodeMoverParaPosicao(posicao)){
+                jogo.inverteJogadorAtual();
+            }else enviarMensagemObservadores("Não é possível movimentar para a posição selecionada!");
+        }        
         /* if (animalAtual == null){
             if (objetosTabuleiro[coluna][linha] != null){
                 if (objetosTabuleiro[coluna][linha] instanceof Animal){

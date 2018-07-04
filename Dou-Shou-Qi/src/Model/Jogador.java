@@ -14,6 +14,7 @@ public class Jogador {
     private List<Armadilha> armadilhas;
     private Toca toca;
     private boolean jogadorAtual;
+    private Animal animalAtual;
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -21,6 +22,7 @@ public class Jogador {
         this.pecas = new ArrayList();
         this.armadilhas = new ArrayList();
         this.toca = null;
+        this.animalAtual = null;
     }
 
     public String getNome() {
@@ -73,6 +75,24 @@ public class Jogador {
     
     public void addArmadilha(Armadilha a){
         armadilhas.add(a);
+    }
+
+    public Animal getAnimalAtual() {
+        return animalAtual;
+    }
+
+    public void setAnimalAtual(Animal animalAtual) {
+        this.animalAtual = animalAtual;
+    }  
+    
+    public Animal retornaAnimalPelaPosicao(int linha, int coluna){
+        for (Animal a : pecas){
+            if (a.getLinha() == linha && a.getColuna() == coluna){
+                return a;
+            }
+        }
+        
+        return null;
     }
     
     public void accept(VisitorAnimaisJogador visitor){

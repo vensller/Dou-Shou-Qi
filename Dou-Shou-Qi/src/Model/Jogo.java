@@ -24,6 +24,7 @@ public class Jogo {
         jogador2         = new Jogador(nomeJogador2);
         observadoresJogo = new ArrayList();
         jogador1.setJogadorAtual(true);
+        jogador2.setJogadorAtual(false);
     }
 
     public Peca[][] getObjetosTabuleiro() {
@@ -80,6 +81,9 @@ public class Jogo {
             jogador2.setJogadorAtual(false);
             jogador1.setJogadorAtual(true);
         }
+        
+        jogador1.setAnimalAtual(null);
+        jogador2.setAnimalAtual(null);
     }
     
     public void movimentaPeca() throws Exception{

@@ -21,7 +21,7 @@ public abstract class DefinirPosicoesPecaDecorator implements DefinirPosicoesPec
 
     @Override
     public boolean posicaoEhLago(int linha, int coluna){
-        return this.posicaoEhLago(linha, coluna);
+        return this.definirPosicoesPeca.posicaoEhLago(linha, coluna);
     }
 
     @Override
