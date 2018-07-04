@@ -12,6 +12,6 @@ public abstract class JogoEstado {
         this.jogo = jogo;
     }    
     
-    public abstract void movimentaPeca() throws Exception;
+    public abstract void movimentaPeca(Posicao posicao);
         
 }

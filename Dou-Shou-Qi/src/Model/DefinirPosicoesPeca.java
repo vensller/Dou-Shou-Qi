@@ -17,5 +17,6 @@ public interface DefinirPosicoesPeca {
     Peca[][] getObjetosTabuleiro();
     List<Peca> getObjetosVerificar();
     void accept(VisitorAtaque visitor);
+    List<Posicao> getLagos();
     
 }

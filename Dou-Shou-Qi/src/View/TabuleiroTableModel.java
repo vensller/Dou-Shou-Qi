@@ -58,7 +58,7 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
                 String caminho = tabuleiroController.retornaCaminhoImagemPelaPosicao(x, y);
                 if (imagens.get(caminho) == null){                    
                     imagens.put(caminho, new ImageIcon(caminho));    
-                    setValueAt(imagens.get(caminho).getImage(), x, y);
+                    setValueAt(imagens.get(caminho).getImage(), x, y);                    
                 }
             }
         }
@@ -83,7 +83,7 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
 
     @Override
     public void notificarAlteracaoTabuleiro() {
-        fireTableDataChanged();
+        fireTableDataChanged();        
     }
 
     @Override

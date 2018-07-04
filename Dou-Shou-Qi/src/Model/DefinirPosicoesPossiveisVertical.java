@@ -136,4 +136,9 @@ public class DefinirPosicoesPossiveisVertical implements DefinirPosicoesPeca{
     public List<Peca> getObjetosVerificar() {
         return objetosVerificar;
     }
+
+    @Override
+    public List<Posicao> getLagos() {
+        return lagos;
+    }
 }

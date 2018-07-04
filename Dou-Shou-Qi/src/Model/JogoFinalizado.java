@@ -12,8 +12,7 @@ public class JogoFinalizado extends JogoEstado{
     }
 
     @Override
-    public void movimentaPeca() throws Exception {
-        throw new Exception("Jogo está finalizado!");
+    public void movimentaPeca(Posicao posicao){
     }
     
 }

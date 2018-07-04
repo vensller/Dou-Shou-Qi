@@ -15,6 +15,7 @@ public class Jogo {
     private Jogador jogador2;
     private JogoEstado estado;
     private List<ObservadorJogo> observadoresJogo;
+    private CommandInvoker comandos;
 
     public Jogo(String nomeJogador1, String nomeJogador2) {
         objetosTabuleiro = null;
@@ -23,8 +24,23 @@ public class Jogo {
         jogador1         = new Jogador(nomeJogador1);
         jogador2         = new Jogador(nomeJogador2);
         observadoresJogo = new ArrayList();
+        comandos         = new CommandInvoker();
         jogador1.setJogadorAtual(true);
-        jogador2.setJogadorAtual(false);
+        jogador2.setJogadorAtual(false);        
+        adicionarComandos();
+    }
+    
+    private void adicionarComandos(){
+        MovimentarPeca movimentarPeca = new MovimentarPeca(); //Codigo 0
+        EntrarLago entrarLago = new EntrarLago(); //Codigo 1
+        SairLago sairLago = new SairLago(); //Codigo 2
+        EntrarArmadilha entrarArmadilha = new EntrarArmadilha(); //Codigo 3
+        SairArmadilha sairArmadilha = new SairArmadilha(); //Codigo 4
+        comandos.addComando(0, movimentarPeca);
+        comandos.addComando(1, entrarLago);
+        comandos.addComando(2, sairLago);
+        comandos.addComando(3, entrarArmadilha);
+        comandos.addComando(4, sairArmadilha);
     }
 
     public Peca[][] getObjetosTabuleiro() {
@@ -86,8 +102,8 @@ public class Jogo {
         jogador2.setAnimalAtual(null);
     }
     
-    public void movimentaPeca() throws Exception{
-        estado.movimentaPeca();
+    public void movimentaPeca(Posicao posicao){
+        estado.movimentaPeca(posicao);
     }
     
     public void encerrarJogo(){
@@ -102,6 +118,10 @@ public class Jogo {
     
     public void pararObservacacao(ObservadorJogo obs){
         observadoresJogo.remove(obs);
+    }
+    
+    public void realizaMovimentacao(int opcao, Peca atual, Peca padrao, Posicao destino){
+        comandos.executaComando(opcao, objetosTabuleiro, atual, padrao, destino);
     }
         
 }

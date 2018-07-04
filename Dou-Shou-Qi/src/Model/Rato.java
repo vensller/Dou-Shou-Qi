@@ -7,9 +7,7 @@ import Model.Animal;
  * @author Ivens
  */
 public class Rato extends Animal{    
-    
-    private boolean estaNoLago;
-
+ 
     public Rato(String imagem, int linha, int coluna) {
         super(imagem, linha, coluna);        
         estaNoLago = false;
@@ -19,15 +17,7 @@ public class Rato extends Animal{
     public int getForca() {
         return 1;
     }
-   
-    public boolean isEstaNoLago() {
-        return estaNoLago;
-    }
 
-    public void setEstaNoLago(boolean estaNoLago) {
-        this.estaNoLago = estaNoLago;
-    }  
-    
     @Override
     public void verificarPosicoesPossiveis(){
         posicoesPossiveis.clear();
@@ -38,6 +28,8 @@ public class Rato extends Animal{
             definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
         } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
         
+        this.lagos = definirPosicoes.getLagos();
+        
         DefinirPosicoesPecaEntraLago definirPosicoesRato = new DefinirPosicoesPecaEntraLago(definirPosicoes);
         
         posicoesPossiveis = definirPosicoesRato.verificarPosicoesPossiveis(linha, coluna);
@@ -45,5 +37,6 @@ public class Rato extends Animal{
         definirPosicoesRato.accept(visitor);
         posicoesPossiveis.addAll(visitor.getListaPosicoes());
     }
+
    
 }

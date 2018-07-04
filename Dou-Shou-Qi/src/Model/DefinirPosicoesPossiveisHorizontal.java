@@ -135,5 +135,10 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
             }
         }
     }
+
+    @Override
+    public List<Posicao> getLagos() {
+        return lagos;
+    }
     
 }

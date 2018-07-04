@@ -11,8 +11,8 @@ public class JogoAguardandoInicio extends JogoEstado{
     }    
 
     @Override
-    public void movimentaPeca() throws Exception{
+    public void movimentaPeca(Posicao posicao){
         jogo.setEstado(new JogoIniciado(jogo));
-        jogo.movimentaPeca();
+        jogo.movimentaPeca(posicao);
     }
 }

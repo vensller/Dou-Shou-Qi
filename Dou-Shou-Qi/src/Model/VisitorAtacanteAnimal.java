@@ -19,7 +19,7 @@ public class VisitorAtacanteAnimal implements VisitorAtaque{
 
     @Override
     public void visit(Peca peca) {
-        if (atacante.getForca() >= peca.getForca()){
+        if (atacante.getForca() >= peca.getForca() || peca.isEstaNaArmadilha()){
             listaPosicoes.add(new Posicao(peca.getColuna(), peca.getLinha()));
         }
     }

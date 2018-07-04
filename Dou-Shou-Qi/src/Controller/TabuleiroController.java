@@ -30,14 +30,6 @@ import java.util.List;
 public class TabuleiroController implements ObservadorJogo{
     
     private List<ObservadorTabuleiro> observadores;    
-    private AndarUmaCasaParaCima andarPraCima;
-    private AndarUmaCasaParaBaixo andarPraBaixo;
-    private AndarUmaCasaParaEsquerda andarPraEsquerda;
-    private AndarUmaCasaParaDireita andarPraDireita;
-    private PularLagoParaBaixo pularLagoParaBaixo;
-    private PularLagoParaCima pularLagoParaCima;
-    private PularLagoParaEsquerda pularLagoParaEsquerda;
-    private PularLagoParaDireita pularLagoParaDireita;    
     private Jogo jogo;
     private CriarTabuleiro criarTabuleiro;
     private HashMap<String, FabricaDePeca> fabricas;
@@ -45,14 +37,6 @@ public class TabuleiroController implements ObservadorJogo{
     public TabuleiroController(String nomeJogador1, String nomeJogador2, boolean vertical){        
         jogo                  = new Jogo(nomeJogador1, nomeJogador2);
         observadores          = new ArrayList<>();        
-        andarPraCima          = new AndarUmaCasaParaCima();
-        andarPraBaixo         = new AndarUmaCasaParaBaixo();
-        andarPraDireita       = new AndarUmaCasaParaDireita();
-        andarPraEsquerda      = new AndarUmaCasaParaEsquerda();
-        pularLagoParaCima     = new PularLagoParaCima();
-        pularLagoParaBaixo    = new PularLagoParaBaixo();
-        pularLagoParaEsquerda = new PularLagoParaEsquerda();
-        pularLagoParaDireita  = new PularLagoParaDireita();
         fabricas              = new HashMap<String, FabricaDePeca>();
         criaFabricas();
         jogo.observar(this);
@@ -101,6 +85,7 @@ public class TabuleiroController implements ObservadorJogo{
         }else{
             Posicao posicao = new Posicao(coluna, linha);
             if (jogo.retornaJogadorAtual().getAnimalAtual().verificaSePodeMoverParaPosicao(posicao)){
+                notificaMovimentacaoPeca();
                 jogo.inverteJogadorAtual();
             }else enviarMensagemObservadores("Não é possível movimentar para a posição selecionada!");
         }        
@@ -267,11 +252,7 @@ public class TabuleiroController implements ObservadorJogo{
         */
         return movimentou;
     }
-    
-    private Peca retornaObjetoPadraoPosicao(int coluna, int linha){        
-        return jogo.getObjetosPadroes()[coluna][linha];        
-    }
-    
+        
     private void notificarCarregamentoTabuleiro(){
         for (ObservadorTabuleiro obs : observadores){
             obs.notificarCarregamentoTabuleiro();

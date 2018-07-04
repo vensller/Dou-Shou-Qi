@@ -29,6 +29,8 @@ public class Tigre extends Animal{
         
         DefinirPosicoesPecaPulaLago definirPosicoesTigre = new DefinirPosicoesPecaPulaLago(definirPosicoes);
         
+        this.lagos = definirPosicoes.getLagos();
+        
         posicoesPossiveis = definirPosicoesTigre.verificarPosicoesPossiveis(linha, coluna);
         VisitorAtacanteAnimal visitor = new VisitorAtacanteAnimal(this);
         definirPosicoesTigre.accept(visitor);

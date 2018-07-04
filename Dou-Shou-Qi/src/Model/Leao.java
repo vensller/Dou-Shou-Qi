@@ -29,6 +29,8 @@ public class Leao extends Animal{
         
         DefinirPosicoesPecaPulaLago definirPosicoesLeao = new DefinirPosicoesPecaPulaLago(definirPosicoes);
         
+        this.lagos = definirPosicoes.getLagos();
+        
         posicoesPossiveis = definirPosicoesLeao.verificarPosicoesPossiveis(linha, coluna);
         VisitorAtacanteAnimal visitor = new VisitorAtacanteAnimal(this);
         definirPosicoesLeao.accept(visitor);

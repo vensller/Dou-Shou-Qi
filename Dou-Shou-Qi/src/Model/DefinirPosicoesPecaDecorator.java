@@ -59,4 +59,9 @@ public abstract class DefinirPosicoesPecaDecorator implements DefinirPosicoesPec
         return this.definirPosicoesPeca.getObjetosVerificar();
     }
     
+    @Override
+    public List<Posicao> getLagos(){
+        return this.definirPosicoesPeca.getLagos();
+    }
+    
 }

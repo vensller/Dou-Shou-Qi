@@ -85,6 +85,16 @@ public class Jogador {
         this.animalAtual = animalAtual;
     }  
     
+    public boolean verificaSeEhArmadilha(int linha, int coluna){
+        for (Armadilha a : armadilhas){
+            if (a.getLinha() == linha && a.getColuna() == coluna){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public Animal retornaAnimalPelaPosicao(int linha, int coluna){
         for (Animal a : pecas){
             if (a.getLinha() == linha && a.getColuna() == coluna){

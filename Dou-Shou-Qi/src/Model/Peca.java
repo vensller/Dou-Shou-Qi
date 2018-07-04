@@ -8,6 +8,7 @@ public abstract class Peca{
         
     protected String imagem;   
     protected boolean estaNaArmadilha;
+    protected boolean estaNoLago;
     protected int linha;
     protected int coluna;
     private String imagemOriginal;
@@ -15,7 +16,10 @@ public abstract class Peca{
     public Peca(String imagem, int linha, int coluna){
         this.imagem = imagem;
         this.estaNaArmadilha = false;
+        this.estaNoLago = false;
         this.imagemOriginal = imagem.substring(0, imagem.length() - 4);
+        this.linha = linha;
+        this.coluna = coluna;
     }
     
     public void setLinha(int linha){
@@ -48,6 +52,14 @@ public abstract class Peca{
 
     public void setEstaNaArmadilha(boolean estaNaArmadilha) {
         this.estaNaArmadilha = estaNaArmadilha;
+    }
+
+    public boolean isEstaNoLago() {
+        return estaNoLago;
+    }
+
+    public void setEstaNoLago(boolean estaNoLago) {
+        this.estaNoLago = estaNoLago;
     }
     
     public String getImagemOriginal(){
