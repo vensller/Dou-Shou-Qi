@@ -17,7 +17,10 @@ public class ConcretBuilderJogador2 extends BuilderJogador{
         objetosTabuleiro[3][7] = fabrica.criaPecaJogador2(7, 3);
         objetosPadroes[2][8] = objetosTabuleiro[2][8];
         objetosPadroes[4][8] = objetosTabuleiro[4][8];
-        objetosPadroes[3][7] = objetosTabuleiro[3][7];        
+        objetosPadroes[3][7] = objetosTabuleiro[3][7];    
+        jogador.addArmadilha((Armadilha) objetosTabuleiro[2][8]);
+        jogador.addArmadilha((Armadilha) objetosTabuleiro[4][8]);
+        jogador.addArmadilha((Armadilha) objetosTabuleiro[3][7]);
     }
 
     @Override

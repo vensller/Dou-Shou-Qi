@@ -11,6 +11,7 @@ public class Jogador {
     
     private String nome;
     private List<Animal> pecas;
+    private List<Armadilha> armadilhas;
     private Toca toca;
     private boolean jogadorAtual;
 
@@ -18,6 +19,7 @@ public class Jogador {
         this.nome = nome;
         this.jogadorAtual = false;
         this.pecas = new ArrayList();
+        this.armadilhas = new ArrayList();
         this.toca = null;
     }
 
@@ -59,6 +61,18 @@ public class Jogador {
 
     public void setToca(Toca toca) {
         this.toca = toca;
+    }
+
+    public List<Armadilha> getArmadilhas() {
+        return armadilhas;
+    }
+
+    public void setArmadilhas(List<Armadilha> armadilhas) {
+        this.armadilhas = armadilhas;
+    }
+    
+    public void addArmadilha(Armadilha a){
+        armadilhas.add(a);
     }
     
     public void accept(VisitorAnimaisJogador visitor){

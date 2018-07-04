@@ -18,6 +18,9 @@ public class ConcretBuilderJogador1Horizontal extends BuilderJogador {
         objetosPadroes[0][2] = objetosTabuleiro[0][2];
         objetosPadroes[0][4] = objetosTabuleiro[0][4];
         objetosPadroes[1][3] = objetosTabuleiro[1][3];
+        jogador.addArmadilha((Armadilha) objetosTabuleiro[0][2]);
+        jogador.addArmadilha((Armadilha) objetosTabuleiro[0][4]);
+        jogador.addArmadilha((Armadilha) objetosTabuleiro[1][3]);
     }
 
     @Override

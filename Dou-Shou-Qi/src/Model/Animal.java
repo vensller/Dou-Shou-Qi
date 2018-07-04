@@ -33,6 +33,12 @@ public abstract class Animal extends Peca{
     }
     
     public boolean verificaSePodeMoverParaPosicao(Posicao posicao){
+        for (Posicao p : posicoesPossiveis){
+            if (p.getX() == posicao.getX() && p.getY() == posicao.getY()){
+                return true;
+            }
+        }        
+        
         return false;
     }
     

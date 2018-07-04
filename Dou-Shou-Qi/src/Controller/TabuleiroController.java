@@ -1,7 +1,5 @@
 package Controller;
 
-import Model.Animal;
-import Model.Armadilha;
 import Model.CriarTabuleiro;
 import Model.CriarTabuleiroHorizontal;
 import Model.CriarTabuleiroVertical;
@@ -17,14 +15,9 @@ import Model.FabricaDeRato;
 import Model.FabricaDeTigre;
 import Model.FabricaDeToca;
 import Model.Jogo;
-import Model.Lago;
-import Model.Leao;
 import Model.ObservadorJogo;
 import Model.ObservadorTabuleiro;
 import Model.Peca;
-import Model.Rato;
-import Model.Tigre;
-import Model.Toca;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
