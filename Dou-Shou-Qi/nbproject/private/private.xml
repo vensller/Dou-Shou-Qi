@@ -4,17 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/Jogador.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/VisitorAnimaisDefinirPosicoes.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/CriarTabuleiroHorizontal.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/View/TabuleiroTableModel.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/VisitorAnimaisQuantidade.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/Jogo.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/CriarTabuleiro.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/ConcretBuilderJogador1.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Controller/TabuleiroController.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/CriarTabuleiroVertical.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/VisitorAnimaisJogador.java</file>
-            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/VisitorAnimaisSetarTabuleiro.java</file>
+            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/FabricaDeLago.java</file>
+            <file>file:/D:/Engenharia%20de%20Software/GitHub/Dou-Shou-Qi/Dou-Shou-Qi/src/Model/Animal.java</file>
         </group>
     </open-files>
 </project-private>

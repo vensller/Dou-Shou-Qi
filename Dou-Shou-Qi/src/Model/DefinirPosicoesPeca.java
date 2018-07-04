@@ -8,7 +8,14 @@ import java.util.List;
  */
 public interface DefinirPosicoesPeca {
     
-    List<Posicao> verificarPosicoesPossiveis(int linha, int coluna, Animal animal);
+    List<Posicao> verificarPosicoesPossiveis(int linha, int coluna);
     boolean posicaoEhLago(int linha, int coluna);
+    int getColunaMax();
+    int getColunaMin();
+    int getLinhaMax();
+    int getLinhaMin();
+    Peca[][] getObjetosTabuleiro();
+    List<Peca> getObjetosVerificar();
+    void accept(VisitorAtaque visitor);
     
 }

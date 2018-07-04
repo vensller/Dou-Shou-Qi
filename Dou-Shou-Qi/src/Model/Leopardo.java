@@ -15,11 +15,6 @@ public class Leopardo extends Animal{
     @Override
     public int getForca() {
         return 5;
-    }
-      
-    @Override
-    public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }  
     
 }

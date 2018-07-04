@@ -7,9 +7,9 @@ import java.util.List;
  *
  * @author Ivens
  */
-public abstract class VisitorAtacanteAnimal implements VisitorAtaque{
+public class VisitorAtacanteAnimal implements VisitorAtaque{
     
-    List<Posicao> listaPosicoes;
+    protected List<Posicao> listaPosicoes;
     protected Animal atacante;
     
     public VisitorAtacanteAnimal(Animal atacante){
@@ -19,7 +19,7 @@ public abstract class VisitorAtacanteAnimal implements VisitorAtaque{
 
     @Override
     public void visit(Peca peca) {
-        if (atacante.getForca() > peca.getForca()){
+        if (atacante.getForca() >= peca.getForca()){
             listaPosicoes.add(new Posicao(peca.getColuna(), peca.getLinha()));
         }
     }

@@ -26,11 +26,24 @@ public class Rato extends Animal{
 
     public void setEstaNoLago(boolean estaNoLago) {
         this.estaNoLago = estaNoLago;
-    }   
-
+    }  
+    
     @Override
-    public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void verificarPosicoesPossiveis(){
+        posicoesPossiveis.clear();
+        
+        DefinirPosicoesPeca definirPosicoes;
+        
+        if (objetosTabuleiro.length == 7){
+            definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
+        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
+        
+        DefinirPosicoesPecaEntraLago definirPosicoesRato = new DefinirPosicoesPecaEntraLago(definirPosicoes);
+        
+        posicoesPossiveis = definirPosicoesRato.verificarPosicoesPossiveis(linha, coluna);
+        VisitorAtacanteRato visitor = new VisitorAtacanteRato(this);
+        definirPosicoesRato.accept(visitor);
+        posicoesPossiveis.addAll(visitor.getListaPosicoes());
     }
    
 }

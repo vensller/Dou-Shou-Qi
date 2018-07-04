@@ -16,10 +16,23 @@ public class Leao extends Animal{
     public int getForca() {
         return 7;
     }
-        
+    
     @Override
-    public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void verificarPosicoesPossiveis(){
+        posicoesPossiveis.clear();
+        
+        DefinirPosicoesPeca definirPosicoes;
+        
+        if (objetosTabuleiro.length == 7){
+            definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
+        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
+        
+        DefinirPosicoesPecaPulaLago definirPosicoesLeao = new DefinirPosicoesPecaPulaLago(definirPosicoes);
+        
+        posicoesPossiveis = definirPosicoesLeao.verificarPosicoesPossiveis(linha, coluna);
+        VisitorAtacanteAnimal visitor = new VisitorAtacanteAnimal(this);
+        definirPosicoesLeao.accept(visitor);
+        posicoesPossiveis.addAll(visitor.getListaPosicoes());
     }
  
 }

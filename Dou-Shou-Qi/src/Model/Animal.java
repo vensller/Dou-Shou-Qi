@@ -32,7 +32,9 @@ public abstract class Animal extends Peca{
         visitor.visit(this);
     }
     
-    public abstract boolean verificaSePodeMoverParaPosicao(Posicao posicao);
+    public boolean verificaSePodeMoverParaPosicao(Posicao posicao){
+        return false;
+    }
     
     public void verificarPosicoesPossiveis(){
         posicoesPossiveis.clear();
@@ -43,8 +45,11 @@ public abstract class Animal extends Peca{
             definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
         } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
         
-        posicoesPossiveis = definirPosicoes.verificarPosicoesPossiveis(linha, coluna, this);
+        posicoesPossiveis = definirPosicoes.verificarPosicoesPossiveis(linha, coluna);
         
+        VisitorAtacanteAnimal visitor = new VisitorAtacanteAnimal(this);
+        definirPosicoes.accept(visitor);
+        posicoesPossiveis.addAll(visitor.getListaPosicoes());
     }   
     
 }

@@ -36,7 +36,7 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     } 
     
     @Override
-    public List<Posicao> verificarPosicoesPossiveis(int linha, int coluna, Animal animal) {
+    public List<Posicao> verificarPosicoesPossiveis(int linha, int coluna) {
         posicoes = new ArrayList<Posicao>();
         objetosVerificar = new ArrayList<Peca>();
         verificaPosicaoAcima(linha, coluna);
@@ -95,6 +95,45 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
         }
         
         return false;
+    }
+
+    @Override
+    public int getColunaMax() {
+        return 8;
+    }
+
+    @Override
+    public int getColunaMin() {
+        return 0;
+    }
+
+    @Override
+    public int getLinhaMax() {
+        return 6;
+    }
+
+    @Override
+    public int getLinhaMin() {
+        return 0;
+    }
+
+    @Override
+    public Peca[][] getObjetosTabuleiro() {
+        return this.objetosTabuleiro;
+    }
+
+    @Override
+    public List<Peca> getObjetosVerificar() {
+        return this.objetosVerificar;
+    }
+
+    @Override
+    public void accept(VisitorAtaque visitor) {
+        if (objetosVerificar != null){
+            for (Peca p : objetosVerificar){
+                visitor.visit(p);
+            }
+        }
     }
     
 }

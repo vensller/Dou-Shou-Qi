@@ -16,10 +16,23 @@ public class Tigre extends Animal{
     public int getForca() {
         return 6;
     }
-
+    
     @Override
-    public boolean verificaSePodeMoverParaPosicao(Posicao posicao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void verificarPosicoesPossiveis(){
+        posicoesPossiveis.clear();
+        
+        DefinirPosicoesPeca definirPosicoes;
+        
+        if (objetosTabuleiro.length == 7){
+            definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
+        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
+        
+        DefinirPosicoesPecaPulaLago definirPosicoesTigre = new DefinirPosicoesPecaPulaLago(definirPosicoes);
+        
+        posicoesPossiveis = definirPosicoesTigre.verificarPosicoesPossiveis(linha, coluna);
+        VisitorAtacanteAnimal visitor = new VisitorAtacanteAnimal(this);
+        definirPosicoesTigre.accept(visitor);
+        posicoesPossiveis.addAll(visitor.getListaPosicoes());
     }
     
 }
