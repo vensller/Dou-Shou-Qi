@@ -22,12 +22,15 @@ public class Tigre extends Animal{
         posicoesPossiveis.clear();
         
         DefinirPosicoesPeca definirPosicoes;
+        DefinirPosicoesPeca definirPosicoesTigre;
         
         if (objetosTabuleiro.length == 7){
             definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
-        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
-        
-        DefinirPosicoesPecaPulaLago definirPosicoesTigre = new DefinirPosicoesPecaPulaLago(definirPosicoes);
+            definirPosicoesTigre = new DefinirPosicoesPecaPulaLago(definirPosicoes);
+        } else {
+            definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
+            definirPosicoesTigre = new DefinirPosicoesPecaPulaLagoHorizontal(definirPosicoes);
+        }        
         
         this.lagos = definirPosicoes.getLagos();
         

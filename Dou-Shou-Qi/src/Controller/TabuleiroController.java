@@ -17,7 +17,6 @@ import Model.FabricaDeToca;
 import Model.Jogo;
 import Model.ObservadorJogo;
 import Model.ObservadorTabuleiro;
-import Model.Peca;
 import Model.Posicao;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,11 +84,7 @@ public class TabuleiroController implements ObservadorJogo{
         }else return "Imagens/grama.png";
     }
     
-    public void movimentaPeca(int coluna, int linha){
-        boolean movimentou = false;
-        boolean fimJogo = false;
-        boolean trocouImagem = false;
-        
+    public void movimentaPeca(int coluna, int linha){        
         if (jogo.retornaJogadorAtual().getAnimalAtual() == null){
             if (jogo.retornaJogadorAtual().retornaAnimalPelaPosicao(linha, coluna) != null){
                 jogo.retornaJogadorAtual().setAnimalAtual(jogo.retornaJogadorAtual().retornaAnimalPelaPosicao(linha, coluna));
@@ -133,26 +128,7 @@ public class TabuleiroController implements ObservadorJogo{
             }else {
                 movimentou = movimentaPecaParaPosicao(coluna, linha);
             }
-        }    
-        
-        if (movimentou){
-            if (!trocouImagem){
-                if (animalAtual.isEstaNaArmadilha()){
-                    animalAtual.setEstaNaArmadilha(false);
-                    animalAtual.setImagem(animalAtual.getImagemOriginal() + ".png");
-                }else if ((animalAtual instanceof Rato) && ((Rato)animalAtual).isEstaNoLago()){
-                    ((Rato)animalAtual).setEstaNoLago(false);
-                    animalAtual.setImagem(animalAtual.getImagemOriginal() + ".png");
-                }
-            }else notificaImagemAlterada(((ObjetoTabuleiro)animalAtual).getImagem());
-            
-            inverteJogador();
-            animalAtual = null;        
-            notificaMovimentacaoPeca();
-            if (fimJogo){
-                notificaFimJogo();
-            }
-        }    */   
+        }    */
     }
         
     private void notificaMovimentacaoPeca(){

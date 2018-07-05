@@ -22,12 +22,15 @@ public class Leao extends Animal{
         posicoesPossiveis.clear();
         
         DefinirPosicoesPeca definirPosicoes;
+        DefinirPosicoesPeca definirPosicoesLeao;
         
         if (objetosTabuleiro.length == 7){
             definirPosicoes = new DefinirPosicoesPossiveisVertical(objetosTabuleiro);
-        } else definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
-        
-        DefinirPosicoesPecaPulaLago definirPosicoesLeao = new DefinirPosicoesPecaPulaLago(definirPosicoes);
+            definirPosicoesLeao = new DefinirPosicoesPecaPulaLago(definirPosicoes);
+        } else {
+            definirPosicoes = new DefinirPosicoesPossiveisHorizontal(objetosTabuleiro);
+            definirPosicoesLeao = new DefinirPosicoesPecaPulaLagoHorizontal(definirPosicoes);
+        }        
         
         this.lagos = definirPosicoes.getLagos();
         

@@ -6,11 +6,11 @@ import java.util.List;
  *
  * @author Ivens
  */
-public class DefinirPosicoesPecaPulaLago extends DefinirPosicoesPecaDecorator{
+public class DefinirPosicoesPecaPulaLagoHorizontal extends DefinirPosicoesPecaDecorator{
     
     List<Posicao> posicoes;
     
-    public DefinirPosicoesPecaPulaLago(DefinirPosicoesPeca definirPosicoes) {
+    public DefinirPosicoesPecaPulaLagoHorizontal(DefinirPosicoesPeca definirPosicoes) {
         super(definirPosicoes);
     }
     
@@ -28,30 +28,30 @@ public class DefinirPosicoesPecaPulaLago extends DefinirPosicoesPecaDecorator{
 
     private void verificaPularLagoAcima(int linha, int coluna){         
         if (posicaoEhLago(linha - 1, coluna)){
-            if (verificaSePodePularLagoParaCima(coluna, linha)) posicoes.add(new Posicao(coluna, linha - 4));
+            if (verificaSePodePularLagoParaCima(coluna, linha)) posicoes.add(new Posicao(coluna, linha - 3));
         }
     }
     
     private void verificaPularLagoAbaixo(int linha, int coluna){
         if (posicaoEhLago(linha + 1, coluna)){
-            if (verificaSePodePularLagoParaBaixo(coluna, linha)) posicoes.add(new Posicao(coluna, linha + 4));
+            if (verificaSePodePularLagoParaBaixo(coluna, linha)) posicoes.add(new Posicao(coluna, linha + 3));
         }
     }
     
     private void verificaPularLagoEsquerda(int linha, int coluna){
         if (posicaoEhLago(linha, coluna - 1)){
-            if (verificaSePodePularLagoParaEsquerda(coluna, linha)) posicoes.add(new Posicao(coluna - 3, linha));
+            if (verificaSePodePularLagoParaEsquerda(coluna, linha)) posicoes.add(new Posicao(coluna - 4, linha));
         }
     }
     
     private void verificaPularLagoDireita(int linha, int coluna){
         if (posicaoEhLago(linha, coluna + 1)){
-            if (verificaSePodePularLagoParaDireita(coluna, linha)) posicoes.add(new Posicao(coluna + 3, linha));
+            if (verificaSePodePularLagoParaDireita(coluna, linha)) posicoes.add(new Posicao(coluna + 4, linha));
         }
     }    
     
     private boolean verificaSePodePularLagoParaEsquerda(int coluna, int linha){
-        for (int i = -2; i < 0; i++){
+        for (int i = -3; i < 0; i++){
             if (!(definirPosicoesPeca.getObjetosTabuleiro()[coluna + i][linha].getForca() == 0)){
                 return false;
             }
@@ -60,7 +60,7 @@ public class DefinirPosicoesPecaPulaLago extends DefinirPosicoesPecaDecorator{
     }
     
     private boolean verificaSePodePularLagoParaDireita(int coluna, int linha){
-        for (int i = 1; i <= 2; i++){
+        for (int i = 1; i <= 3; i++){
             if (!(definirPosicoesPeca.getObjetosTabuleiro()[coluna + i][linha].getForca() == 0)){
                 return false;
             }
@@ -70,7 +70,7 @@ public class DefinirPosicoesPecaPulaLago extends DefinirPosicoesPecaDecorator{
     }
     
     private boolean verificaSePodePularLagoParaCima(int coluna, int linha){
-        for (int i = -3; i < 0; i++){
+        for (int i = -2; i < 0; i++){
             if (!(definirPosicoesPeca.getObjetosTabuleiro()[coluna][linha + i].getForca() == 0)){
                 return false;
             }
@@ -80,7 +80,7 @@ public class DefinirPosicoesPecaPulaLago extends DefinirPosicoesPecaDecorator{
     }
     
     private boolean verificaSePodePularLagoParaBaixo(int coluna, int linha){
-        for (int i = 1; i <= 3; i++){
+        for (int i = 1; i <= 2; i++){
             if (!(definirPosicoesPeca.getObjetosTabuleiro()[coluna][linha + i].getForca() == 0)){
                 return false;
             }
@@ -88,4 +88,5 @@ public class DefinirPosicoesPecaPulaLago extends DefinirPosicoesPecaDecorator{
         
         return true;
     }
+    
 }
