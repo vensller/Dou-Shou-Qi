@@ -47,13 +47,14 @@ public class JogoIniciado extends JogoEstado{
         
         Peca padrao = jogo.getObjetosPadroes()[atual.getAnimalAtual().getColuna()][atual.getAnimalAtual().getLinha()];
         
-        jogo.realizaMovimentacao(opcao, atual.getAnimalAtual(), padrao, posicao);
+        jogo.realizaMovimentacao(opcao, atual.getAnimalAtual(), padrao, posicao);        
+        jogo.verificaAlteracaoImagem();
         
         VisitorAnimaisQuantidade v1 = new VisitorAnimaisQuantidade();
         VisitorAnimaisQuantidade v2 = new VisitorAnimaisQuantidade();
         jogo.getJogador1().accept(v1);
-        jogo.getJogador2().accept(v2);
-        boolean entrouNaToca = outro.getToca().getLinha() == posicao.getY() && outro.getToca().getColuna() == posicao.getX();
+        jogo.getJogador2().accept(v2);        
+        boolean entrouNaToca = outro.getToca().getLinha() == posicao.getY() && outro.getToca().getColuna() == posicao.getX();        
         if (v1.getQtd() == 0 || v2.getQtd() == 0 || entrouNaToca){
             jogo.setEstado(new JogoFinalizado(jogo));
         }

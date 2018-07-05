@@ -37,6 +37,14 @@ public class Rato extends Animal{
         definirPosicoesRato.accept(visitor);
         posicoesPossiveis.addAll(visitor.getListaPosicoes());
     }
+    
+    @Override
+    public void verificarImagem(){
+        super.verificarImagem();
+        if (estaNoLago){
+            setImagem(getImagemOriginal() + "NoLago.PNG");
+        }
+    }
 
    
 }

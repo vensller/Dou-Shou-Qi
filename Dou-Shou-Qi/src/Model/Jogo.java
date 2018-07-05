@@ -123,5 +123,11 @@ public class Jogo {
     public void realizaMovimentacao(int opcao, Peca atual, Peca padrao, Posicao destino){
         comandos.executaComando(opcao, objetosTabuleiro, atual, padrao, destino);
     }
+
+    public void verificaAlteracaoImagem(){
+        VisitorAnimaisVerificarImagens v1 = new VisitorAnimaisVerificarImagens();
+        jogador1.accept(v1);
+        jogador2.accept(v1);
+    }
         
 }
