@@ -83,10 +83,10 @@ public abstract class Animal extends Peca{
     }
     
     public void verificarImagem(){
-        setImagem(getImagemOriginal());
+        setImagem(getImagemOriginal() + ".png");
         
         if (estaNaArmadilha){
-            setImagem(getImagemOriginal() + "EstaNaArmadilha.png");
+            setImagem(getImagemNaArmadilha());
         }
         
     }

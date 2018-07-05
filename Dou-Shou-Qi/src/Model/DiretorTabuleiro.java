@@ -12,8 +12,8 @@ public class DiretorTabuleiro {
         this.builder = builder;
     }
     
-    public void construir(Peca[][] objetosTabuleiro){
-        builder.criaLagos(objetosTabuleiro, new FabricaDeLago());
+    public void construir(Peca[][] objetosTabuleiro, Peca[][] objetosPadroes){
+        builder.criaLagos(objetosTabuleiro, objetosPadroes, new FabricaDeLago());
     }
     
 }

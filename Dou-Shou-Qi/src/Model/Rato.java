@@ -42,7 +42,7 @@ public class Rato extends Animal{
     public void verificarImagem(){
         super.verificarImagem();
         if (estaNoLago){
-            setImagem(getImagemOriginal() + "NoLago.PNG");
+            setImagem(getImagemNoLago());
         }
     }
 

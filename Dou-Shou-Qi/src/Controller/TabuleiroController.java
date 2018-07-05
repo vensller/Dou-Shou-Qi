@@ -73,6 +73,18 @@ public class TabuleiroController implements ObservadorJogo{
         }else return "Imagens/grama.png";
     }
     
+    public String retornaCaminhoImagemNaArmadilhaPelaPosicao(int coluna, int linha){
+        if (jogo.getObjetosTabuleiro()[coluna][linha] != null){
+            return jogo.getObjetosTabuleiro()[coluna][linha].getImagemNaArmadilha();
+        }else return "Imagens/grama.png"; 
+    }
+    
+    public String retornaCaminhoImagemNoLagoPelaPosicao(int coluna, int linha){
+        if (jogo.getObjetosTabuleiro()[coluna][linha] != null){
+            return jogo.getObjetosTabuleiro()[coluna][linha].getImagemNoLago();
+        }else return "Imagens/grama.png";
+    }
+    
     public void movimentaPeca(int coluna, int linha){
         boolean movimentou = false;
         boolean fimJogo = false;
@@ -85,6 +97,7 @@ public class TabuleiroController implements ObservadorJogo{
         }else{
             Posicao posicao = new Posicao(coluna, linha);
             if (jogo.retornaJogadorAtual().getAnimalAtual().verificaSePodeMoverParaPosicao(posicao)){
+                jogo.movimentaPeca(posicao);
                 notificaMovimentacaoPeca();
                 jogo.inverteJogadorAtual();
             }else enviarMensagemObservadores("Não é possível movimentar para a posição selecionada!");
@@ -265,12 +278,6 @@ public class TabuleiroController implements ObservadorJogo{
         }
     }   
     
-    private void notificaImagemAlterada(String imagem){
-        for (ObservadorTabuleiro obs : observadores){
-            obs.notificaTrocouImagem(imagem);
-        }
-    }
-
     @Override
     public void notificarJogoEncerrado() {
         this.notificaFimJogo();

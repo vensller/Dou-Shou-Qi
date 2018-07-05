@@ -28,15 +28,15 @@ public class DefinirPosicoesPecaEntraLago extends DefinirPosicoesPecaDecorator{
     
     private void verificaLagoAcima(int linha, int coluna){         
         if (posicaoEhLago(linha - 1, coluna)){
-            if (definirPosicoesPeca.getObjetosTabuleiro()[linha - 1][coluna].getForca() > 0){
-                this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[linha - 1][coluna]);
+            if (definirPosicoesPeca.getObjetosTabuleiro()[coluna][linha - 1].getForca() > 0){
+                this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[coluna][linha - 1]);
             }else posicoes.add(new Posicao(coluna, linha - 1));
         }
     }
     
     private void verificaLagoAbaixo(int linha, int coluna){
         if (posicaoEhLago(linha + 1, coluna)){
-            if (definirPosicoesPeca.getObjetosTabuleiro()[linha + 1][coluna].getForca() > 0){
+            if (definirPosicoesPeca.getObjetosTabuleiro()[coluna][linha + 1].getForca() > 0){
                 this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[linha + 1][coluna]);
             }else posicoes.add(new Posicao(coluna, linha + 1));
         }
@@ -44,16 +44,16 @@ public class DefinirPosicoesPecaEntraLago extends DefinirPosicoesPecaDecorator{
     
     private void verificaLagoEsquerda(int linha, int coluna){
         if (posicaoEhLago(linha, coluna - 1)){
-            if (definirPosicoesPeca.getObjetosTabuleiro()[linha][coluna - 1].getForca() > 0){
-                this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[linha][coluna - 1]);
+            if (definirPosicoesPeca.getObjetosTabuleiro()[coluna - 1][linha].getForca() > 0){
+                this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[coluna - 1][linha]);
             }else posicoes.add(new Posicao(coluna - 1, linha));
         }
     }
     
     private void verificaLagoDireita(int linha, int coluna){
         if (posicaoEhLago(linha, coluna + 1)){
-            if (definirPosicoesPeca.getObjetosTabuleiro()[linha][coluna + 1].getForca() > 0){
-                this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[linha][coluna + 1]);
+            if (definirPosicoesPeca.getObjetosTabuleiro()[coluna + 1][linha].getForca() > 0){
+                this.definirPosicoesPeca.getObjetosVerificar().add(definirPosicoesPeca.getObjetosTabuleiro()[coluna + 1][linha]);
             }else posicoes.add(new Posicao(coluna + 1, linha));
         }
     }    

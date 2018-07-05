@@ -56,9 +56,17 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
         for (int x = 0; x < getColumnCount(); x++){
             for (int y = 0; y < getRowCount(); y++){
                 String caminho = tabuleiroController.retornaCaminhoImagemPelaPosicao(x, y);
+                String caminhoNaArmadilha = tabuleiroController.retornaCaminhoImagemNaArmadilhaPelaPosicao(x, y);
+                String caminhoNoLago = tabuleiroController.retornaCaminhoImagemNoLagoPelaPosicao(x, y);
                 if (imagens.get(caminho) == null){                    
                     imagens.put(caminho, new ImageIcon(caminho));    
                     setValueAt(imagens.get(caminho).getImage(), x, y);                    
+                }
+                if (imagens.get(caminhoNaArmadilha) == null){
+                    imagens.put(caminhoNaArmadilha, new ImageIcon(caminhoNaArmadilha));        
+                }  
+                if (imagens.get(caminhoNoLago) == null){
+                    imagens.put(caminhoNoLago, new ImageIcon(caminhoNoLago));        
                 }
             }
         }
@@ -90,13 +98,6 @@ public class TabuleiroTableModel extends AbstractTableModel implements Observado
     public void notificarFimJogo(String jogadorVencedor) {
         JOptionPane.showMessageDialog(null, "Fim do jogo! Parabéns " + jogadorVencedor + "!");
         System.exit(0);
-    }
-
-    @Override
-    public void notificaTrocouImagem(String imagem) {
-        if (imagens.get(imagem) == null){
-            imagens.put(imagem, new ImageIcon(imagem));
-        }
     }
     
 }

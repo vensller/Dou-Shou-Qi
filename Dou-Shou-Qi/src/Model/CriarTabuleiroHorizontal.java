@@ -48,7 +48,7 @@ public class CriarTabuleiroHorizontal implements CriarTabuleiro{
     
     private void criaTabuleiro(BuilderObjetoTabuleiro builder){
         DiretorTabuleiro diretor = new DiretorTabuleiro(builder);
-        diretor.construir(jogo.getObjetosTabuleiro());
+        diretor.construir(jogo.getObjetosTabuleiro(), jogo.getObjetosPadroes());
     }
       
 }
