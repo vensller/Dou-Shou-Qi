@@ -111,4 +111,16 @@ public abstract class Animal extends Peca{
         }
     }
     
+    public void naoDeixarMatarMesmoTime(List<Animal> pecasTime){
+        List<Posicao> remover = new ArrayList<>();
+        for (Animal a : pecasTime){
+            for (Posicao p : posicoesPossiveis){
+                if (p.getX() == a.getColuna() && p.getY() == a.getLinha()){
+                    remover.add(p);
+                }
+            }
+        }
+        posicoesPossiveis.removeAll(remover);
+    }
+    
 }

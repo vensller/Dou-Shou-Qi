@@ -96,39 +96,7 @@ public class TabuleiroController implements ObservadorJogo{
                 notificaMovimentacaoPeca();
                 jogo.inverteJogadorAtual();
             }else enviarMensagemObservadores("Não é possível movimentar para a posição selecionada!");
-        }        
-        /* if (animalAtual == null){
-            if (objetosTabuleiro[coluna][linha] != null){
-                if (objetosTabuleiro[coluna][linha] instanceof Animal){
-                    if (((Animal)objetosTabuleiro[coluna][linha]).getJogador() == jogadorAtual){
-                        animalAtual = (ObjetoJogo)objetosTabuleiro[coluna][linha];                           
-                    }else enviarMensagemObservadores("O animal selecionado é do outro jogador!");
-                } else enviarMensagemObservadores("Não é uma peça movimentável!");
-            }else enviarMensagemObservadores("Não é uma peça movimentável!");
-        }else{
-            if (objetosTabuleiro[coluna][linha] != null){
-                if ((objetosTabuleiro[coluna][linha] instanceof Lago)&&(animalAtual instanceof Rato)){
-                    movimentou = movimentaPecaParaPosicao(coluna, linha);
-                    if (movimentou){
-                        ((Rato)animalAtual).setEstaNoLago(true);
-                        animalAtual.setImagem("Imagens/rato" + jogadorAtual + "NoLago.png");
-                        trocouImagem = true;
-                    }
-                }else if ((objetosTabuleiro[coluna][linha] instanceof Armadilha) && (((Armadilha)objetosTabuleiro[coluna][linha]).getJogador() != jogadorAtual)){
-                    movimentou = movimentaPecaParaPosicao(coluna, linha);   
-                    if (movimentou){
-                        animalAtual.setEstaNaArmadilha(true);
-                        animalAtual.setImagem(animalAtual.getImagemOriginal() + "NaArmadilha.png");
-                        trocouImagem = true;
-                    }
-                }else if ((objetosTabuleiro[coluna][linha] instanceof Toca)&&(((Toca)objetosTabuleiro[coluna][linha]).getJogador() != jogadorAtual)){
-                    movimentou = movimentaPecaParaPosicao(coluna, linha);
-                    fimJogo = movimentou;
-                }
-            }else {
-                movimentou = movimentaPecaParaPosicao(coluna, linha);
-            }
-        }    */
+        }              
     }
         
     private void notificaMovimentacaoPeca(){
@@ -143,105 +111,6 @@ public class TabuleiroController implements ObservadorJogo{
         }
     }
     
-    private boolean movimentaPecaPulandoLago(int coluna, int linha){
-        boolean movimentou = false;
-        
-        /*if ((animalAtual instanceof Tigre) || (animalAtual instanceof Leao)){
-            if (linha == animalAtual.getLinha()){
-                if ((coluna == animalAtual.getColuna() + 3)&&(verificaSePodePularLagoParaDireita())){
-                    pularLagoParaDireita.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(coluna, linha));
-                    movimentou = true;
-                }
-                if ((coluna == animalAtual.getColuna() - 3)&&(verificaSePodePularLagoParaEsquerda())){
-                    pularLagoParaEsquerda.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(coluna, linha));
-                    movimentou = true;
-                }
-            }
-            if (coluna == animalAtual.getColuna()){
-                if ((linha == animalAtual.getLinha() + 4)&&(verificaSePodePularLagoParaBaixo())){
-                    pularLagoParaBaixo.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(coluna, linha));
-                    movimentou = true;
-                }
-                if ((linha == animalAtual.getLinha() - 4)&&(verificaSePodePularLagoParaCima())){
-                    pularLagoParaCima.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(coluna, linha));
-                }
-            }
-        }        
-        */
-        return movimentou;
-    }
-    
-    /*private boolean verificaSePodePularLagoParaEsquerda(){
-        for (int i = -2; i < 0; i++){
-            if (!(objetosTabuleiro[animalAtual.getColuna() + i][animalAtual.getLinha()] instanceof Lago)){
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    private boolean verificaSePodePularLagoParaDireita(){
-        for (int i = 1; i <= 2; i++){
-            if (!(objetosTabuleiro[animalAtual.getColuna() + i][animalAtual.getLinha()] instanceof Lago)){
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    private boolean verificaSePodePularLagoParaCima(){
-        for (int i = -3; i < 0; i++){
-            if (!(objetosTabuleiro[animalAtual.getColuna()][animalAtual.getLinha() + i] instanceof Lago)){
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    private boolean verificaSePodePularLagoParaBaixo(){
-        for (int i = 1; i <= 3; i++){
-            if (!(objetosTabuleiro[animalAtual.getColuna()][animalAtual.getLinha() + i] instanceof Lago)){
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    */
-    private boolean movimentaPecaParaPosicao(int coluna, int linha){
-        boolean movimentou = false;
-                
-        /*if (coluna == animalAtual.getColuna()){
-            if ((linha) == (animalAtual.getLinha() + 1)){                                               
-                andarPraBaixo.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(animalAtual.getColuna(), animalAtual.getLinha()));
-                movimentou = true;
-            }                                       
-            if ((linha) == (animalAtual.getLinha() - 1)){
-                andarPraCima.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(animalAtual.getColuna(), animalAtual.getLinha()));                         
-                movimentou = true;                        
-            }
-        } 
-
-        if (linha == animalAtual.getLinha()){
-            if ((coluna) == (animalAtual.getColuna() + 1)){                
-                andarPraDireita.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(animalAtual.getColuna(), animalAtual.getLinha()));
-                movimentou = true;
-            }
-            if ((coluna) == animalAtual.getColuna() - 1){
-                andarPraEsquerda.execute(objetosTabuleiro, animalAtual, retornaObjetoPadraoPosicao(animalAtual.getColuna(), animalAtual.getLinha()));
-                movimentou = true;
-            }
-        }
-        
-        if (!movimentou){
-            movimentou = movimentaPecaPulandoLago(coluna, linha);
-        }
-        */
-        return movimentou;
-    }
-        
     private void notificarCarregamentoTabuleiro(){
         for (ObservadorTabuleiro obs : observadores){
             obs.notificarCarregamentoTabuleiro();
