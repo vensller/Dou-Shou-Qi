@@ -17,5 +17,10 @@ public class Elefante extends Animal{
     public int getForca() {
         return 8;
     }
+    
+    @Override
+    public void accept(VisitorAtaque visitor){
+        visitor.visit(this);
+    }
 
 }

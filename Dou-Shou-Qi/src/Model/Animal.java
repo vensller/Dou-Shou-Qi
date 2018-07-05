@@ -91,4 +91,24 @@ public abstract class Animal extends Peca{
         
     }
     
+    public void removerPosicaoToca(int x, int y){        
+        List<Posicao> posicoesRemover = new ArrayList<>();
+        for (Posicao p : posicoesPossiveis){
+            if (p.getX() == x && p.getY() == y){
+                posicoesRemover.add(p);
+            }
+        }
+        posicoesPossiveis.removeAll(posicoesRemover);
+    }
+    
+    public void verificarSeEstaNaPropriaArmadilha(List<Armadilha> armadilhas){
+        verificarImagem();
+        
+        for (Armadilha a : armadilhas){
+            if (a.getColuna() == getColuna() && a.getLinha() == getLinha()){
+                setImagem(getImagemNaArmadilha());
+            }
+        }
+    }
+    
 }

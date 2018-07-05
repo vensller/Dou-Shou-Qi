@@ -36,9 +36,13 @@ public class CriarTabuleiroHorizontal implements CriarTabuleiro{
         jogo.getJogador1().accept(visitorPosicoes);
         jogo.getJogador2().accept(visitorPosicoes);
         VisitorAnimaisJogadorSetarJogador visitorJogador1 = new VisitorAnimaisJogadorSetarJogador(jogo.getJogador1());        
-        VisitorAnimaisJogadorSetarJogador visitorJogador2 = new VisitorAnimaisJogadorSetarJogador(jogo.getJogador2());        
+        VisitorAnimaisJogadorSetarJogador visitorJogador2 = new VisitorAnimaisJogadorSetarJogador(jogo.getJogador2());  
+        VisitorAnimaisNaoDeixarEntrarToca visitorToca1    = new VisitorAnimaisNaoDeixarEntrarToca(jogo.getJogador1().getToca());
+        VisitorAnimaisNaoDeixarEntrarToca visitorToca2    = new VisitorAnimaisNaoDeixarEntrarToca(jogo.getJogador2().getToca());
         jogo.getJogador1().accept(visitorJogador1);
         jogo.getJogador2().accept(visitorJogador2);
+        jogo.getJogador1().accept(visitorToca1);
+        jogo.getJogador2().accept(visitorToca2);   
     }
     
     private void criaJogadores(BuilderJogador builder){

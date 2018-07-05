@@ -53,10 +53,18 @@ public class JogoIniciado extends JogoEstado{
         VisitorAnimaisQuantidade v1 = new VisitorAnimaisQuantidade();
         VisitorAnimaisQuantidade v2 = new VisitorAnimaisQuantidade();
         VisitorAnimaisDefinirPosicoes visitorPosicoes = new VisitorAnimaisDefinirPosicoes(); 
+        VisitorAnimaisNaoDeixarEntrarToca visitorToca1 = new VisitorAnimaisNaoDeixarEntrarToca(jogo.getJogador1().getToca());
+        VisitorAnimaisNaoDeixarEntrarToca visitorToca2 = new VisitorAnimaisNaoDeixarEntrarToca(jogo.getJogador2().getToca());                
+        VisitorAnimaisSetarImagemArmadilha visitArm1   = new VisitorAnimaisSetarImagemArmadilha(jogo.getJogador1().getArmadilhas());
+        VisitorAnimaisSetarImagemArmadilha visitArm2   = new VisitorAnimaisSetarImagemArmadilha(jogo.getJogador2().getArmadilhas());
         jogo.getJogador1().accept(v1);
         jogo.getJogador2().accept(v2);        
         jogo.getJogador1().accept(visitorPosicoes);
         jogo.getJogador2().accept(visitorPosicoes);
+        jogo.getJogador1().accept(visitorToca1);
+        jogo.getJogador2().accept(visitorToca2); 
+        jogo.getJogador1().accept(visitArm1);
+        jogo.getJogador2().accept(visitArm2); 
         boolean entrouNaToca = outro.getToca().getLinha() == posicao.getY() && outro.getToca().getColuna() == posicao.getX();        
         if (v1.getQtd() == 0 || v2.getQtd() == 0 || entrouNaToca){
             jogo.setEstado(new JogoFinalizado(jogo));

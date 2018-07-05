@@ -131,7 +131,7 @@ public class DefinirPosicoesPossiveisHorizontal implements DefinirPosicoesPeca{
     public void accept(VisitorAtaque visitor) {
         if (objetosVerificar != null){
             for (Peca p : objetosVerificar){
-                visitor.visit(p);
+                p.accept(visitor);
             }
         }
     }
